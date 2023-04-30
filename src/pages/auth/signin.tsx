@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import { Button } from '@mui/material';
 
-const SignIn = () => {
+const SignIn: FC = () => {
   return (
     <>
       <h1>Страница входа</h1>
