@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# check if branch is not develop
+branch=$(git branch | grep '*' | sed 's/* //')
+
+if [ "$branch" = "main" ]; then
+  echo "You can't commit directly to develop branch"
+  exit 1
+fi
+
+# Check if there are unstaged changes
+if ! git diff --exit-code --quiet; then
+  echo "There are unstaged changes. Please stage your changes before committing."
+  exit 1
+fi
+
+# Run lint-staged command for both workspaces
+npx lint-staged --config=.lintstagedrc
+
+# Continue with the commit if everything passed
+exit 0
