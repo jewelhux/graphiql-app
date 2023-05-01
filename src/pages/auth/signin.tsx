@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { Button } from '@mui/material';
+import Form from '@/components/Form';
+import { Auth } from '@/types/enum';
 
 const SignIn: FC = () => {
   return (
     <>
-      <h1>Страница входа</h1>
-      <Button variant="contained">Кнопка страницы входа</Button>
+      <Form variantAuth={Auth.signin} />
     </>
   );
 };

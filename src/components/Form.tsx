@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import {
   TextField,
   Box,
@@ -16,14 +16,18 @@ import {
   FormHelperText,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import { Auth } from '@/types/enum';
+import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/constant/constant';
 
-const EMAIL_REGEXP =
-  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+interface IFormProps {
+  variantAuth: string;
+}
 
-const PASSWORD_REGEXP = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&;'":])[A-Za-z\d@$!%*#?&:;'"]{8,}$/;
-
-const Form = () => {
+const Form: FC<IFormProps> = ({ variantAuth }) => {
+  const { push } = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -67,6 +71,22 @@ const Form = () => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const isValidArray = Object.values(isValidForm);
+    const validForm = isValidArray.every((el) => el);
+    if (validForm) {
+      alert(password);
+      alert(email);
+      setEmail('');
+      setPassword('');
+    }
+  };
+
+  const handleLinkToOtherAuth = () => {
+    push(`/auth/${variantAuth === Auth.signin ? 'signup' : 'signin'}`);
+  };
+
   return (
     <>
       <Container
@@ -89,12 +109,12 @@ const Form = () => {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockIcon />
+              {variantAuth === Auth.signin ? <LockIcon /> : <HowToRegIcon />}
             </Avatar>
             <Typography component="h1" variant="h5">
-              Login
+              {variantAuth}
             </Typography>
-            <Box component="form" noValidate sx={{ mt: 3 }}>
+            <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleFormSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -151,10 +171,15 @@ const Form = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                {'LOGIN'}
+                {variantAuth}
               </Button>
-              <Button disabled={false} fullWidth sx={{ mt: 1, mb: 1 }}>
-                {'GO TO REGISTER'}
+              <Button
+                disabled={false}
+                fullWidth
+                sx={{ mt: 1, mb: 1 }}
+                onClick={handleLinkToOtherAuth}
+              >
+                {`GO TO ${variantAuth === Auth.signin ? Auth.signup : Auth.signin}`}
               </Button>
             </Box>
           </Box>
