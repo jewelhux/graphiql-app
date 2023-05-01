@@ -5,7 +5,9 @@
   margin: 0;
 }
 
-body, html, #__next {
+body,
+html,
+#__next {
   height: 100%;
   overflow-x: hidden;
 }
