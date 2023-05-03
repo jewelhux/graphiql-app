@@ -87,10 +87,10 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                 <Grid item xs={12}>
                   <TextField
                     {...register('email', {
-                      required: 'Error: not value',
+                      required: 'Please enter your email address',
                       pattern: {
                         value: EMAIL_REGEXP,
-                        message: 'Error: type of password',
+                        message: 'Please enter a valid email address',
                       },
                     })}
                     error={errors.email ? true : false}
@@ -117,11 +117,11 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                         </InputAdornment>
                       }
                       {...register('password', {
-                        required: 'Error: not value',
+                        required: 'Please enter your password',
                         pattern: {
                           value: PASSWORD_REGEXP,
                           message:
-                            'minimum 8 symbols, at least one letter, one digit, one special character',
+                            'Password must have min 8 chars (uppercase, lowercase, digit and special char)',
                         },
                       })}
                       error={errors.password ? true : false}
