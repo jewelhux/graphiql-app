@@ -94,7 +94,7 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                       },
                     })}
                     error={errors.email ? true : false}
-                    helperText={errors.email ? 'not correct type of Email' : ' '}
+                    helperText={errors.email ? errors.email.message : ' '}
                     fullWidth
                     id="email"
                     label={'email'}
@@ -120,7 +120,8 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                         required: 'Error: not value',
                         pattern: {
                           value: PASSWORD_REGEXP,
-                          message: 'Error: type of password',
+                          message:
+                            'minimum 8 symbols, at least one letter, one digit, one special character',
                         },
                       })}
                       error={errors.password ? true : false}
@@ -134,9 +135,7 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                 </Grid>
               </Grid>
               <FormHelperText error id="accountId-error">
-                {!errors.password
-                  ? ' '
-                  : 'minimum 8 symbols, at least one letter, one digit, one special character'}
+                {errors.password ? errors.password.message : ' '}
               </FormHelperText>
 
               <Button
