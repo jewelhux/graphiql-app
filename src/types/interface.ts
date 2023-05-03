@@ -4,4 +4,8 @@ interface IUserSlice {
   token: string | null;
 }
 
-export type { IUserSlice };
+interface IFormProps {
+  variantAuth: string;
+}
+
+export type { IUserSlice, IFormProps };
