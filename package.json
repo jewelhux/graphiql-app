@@ -24,7 +24,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^12.5.0",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "react-hook-form": "^7.43.9"
   },
   "dependencies": {
     "@emotion/react": "^11.10.8",

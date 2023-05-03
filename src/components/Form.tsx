@@ -19,6 +19,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 import { Auth } from '@/types/enum';
 import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/utils/const';
 
@@ -26,61 +27,28 @@ interface IFormProps {
   variantAuth: string;
 }
 
+interface IFormData {
+  email: string;
+  password: string;
+}
+
 const Form: FC<IFormProps> = ({ variantAuth }) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IFormData>({ mode: 'onChange', reValidateMode: 'onChange' });
+
   const { push } = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [isValidForm, setisValidForm] = useState({
-    email: false,
-    password: false,
-  });
-
-  const handleValidvalidEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    setEmail(target.value);
-    if (EMAIL_REGEXP.test(target.value)) {
-      setisValidForm((prev) => ({
-        ...prev,
-        [e.target.name]: true,
-      }));
-    } else {
-      setisValidForm((prev) => ({
-        ...prev,
-        [e.target.name]: false,
-      }));
-    }
-  };
-
-  const handleValidvalidPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    setPassword(target.value);
-    if (PASSWORD_REGEXP.test(target.value)) {
-      setisValidForm((prev) => ({
-        ...prev,
-        [e.target.name]: true,
-      }));
-    } else {
-      setisValidForm((prev) => ({
-        ...prev,
-        [e.target.name]: false,
-      }));
-    }
-  };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const isValidArray = Object.values(isValidForm);
-    const validForm = isValidArray.every((el) => el);
-    if (validForm) {
-      alert(password);
-      alert(email);
-      setEmail('');
-      setPassword('');
-    }
+  const onSubmit = (data: IFormData) => {
+    alert(data.password);
+    alert(data.email);
+    reset();
   };
 
   const handleLinkToOtherAuth = () => {
@@ -114,20 +82,22 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
             <Typography component="h1" variant="h5">
               {variantAuth}
             </Typography>
-            <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleFormSubmit}>
+            <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(onSubmit)}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
-                    disabled={false}
-                    error={email === '' ? false : isValidForm.email ? false : true}
-                    helperText={email === '' ? ' ' : !isValidForm.email ? 'not correct Email' : ' '}
-                    required
+                    {...register('email', {
+                      required: 'Please enter your email address',
+                      pattern: {
+                        value: EMAIL_REGEXP,
+                        message: 'Please enter a valid email address',
+                      },
+                    })}
+                    error={errors.email ? true : false}
+                    helperText={errors.email ? errors.email.message : ' '}
                     fullWidth
                     id="email"
-                    value={email}
-                    onChange={handleValidvalidEmail}
                     label={'email'}
-                    name="email"
                     autoComplete="email"
                   />
                 </Grid>
@@ -146,12 +116,16 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                           </IconButton>
                         </InputAdornment>
                       }
-                      error={password === '' ? false : isValidForm.password ? false : true}
-                      required
+                      {...register('password', {
+                        required: 'Please enter your password',
+                        pattern: {
+                          value: PASSWORD_REGEXP,
+                          message:
+                            'Password must have min 8 chars (uppercase, lowercase, digit and special char)',
+                        },
+                      })}
+                      error={errors.password ? true : false}
                       fullWidth
-                      name="password"
-                      value={password}
-                      onChange={handleValidvalidPassword}
                       label={'password'}
                       type={showPassword ? 'text' : 'password'}
                       id="password"
@@ -161,7 +135,7 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
                 </Grid>
               </Grid>
               <FormHelperText error id="accountId-error">
-                {password === '' ? ' ' : !isValidForm.password ? 'not correct Passord' : ' '}
+                {errors.password ? errors.password.message : ' '}
               </FormHelperText>
 
               <Button
