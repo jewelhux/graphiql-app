@@ -20,7 +20,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { Auth } from '@/types/enum';
-import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/constant/constant';
+import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/utils/const';
 
 interface IFormProps {
   variantAuth: string;
