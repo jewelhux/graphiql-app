@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { Layout, Typography, Row, Col, Button } from 'antd';
 
 const Auth: FC = () => {
   const { pathname, push } = useRouter();
@@ -13,8 +11,8 @@ const Auth: FC = () => {
         <title>{`RSFINAL${pathname}`}</title>
       </Head>
 
-      <Box
-        sx={{
+      <Layout.Content
+        style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -22,30 +20,30 @@ const Auth: FC = () => {
           backgroundColor: '#F8F8F8',
         }}
       >
-        <Typography variant="h4" gutterBottom>
-          Welcome to Graf
-        </Typography>
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-          <Link
-            component="button"
-            variant="body2"
-            onClick={() => {
-              push('auth/signin');
-            }}
-          >
-            Sign In
-          </Link>
-          <Link
-            component="button"
-            variant="body2"
-            onClick={() => {
-              push('auth/signup');
-            }}
-          >
-            Sign Up
-          </Link>
-        </Box>
-      </Box>
+        <Typography.Title level={4}>Welcome to Graf</Typography.Title>
+        <Row justify="space-between">
+          <Col>
+            <Button
+              type="link"
+              onClick={() => {
+                push('auth/signin');
+              }}
+            >
+              Sign In
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              type="link"
+              onClick={() => {
+                push('auth/signup');
+              }}
+            >
+              Sign Up
+            </Button>
+          </Col>
+        </Row>
+      </Layout.Content>
     </>
   );
 };
