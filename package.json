@@ -27,6 +27,7 @@
     "react-hook-form": "^7.43.9"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@reduxjs/toolkit": "^1.9.3",
