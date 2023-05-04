@@ -22,7 +22,12 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Auth } from '@/types/enum';
 import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/utils/const';
-import { IFormData, IFormProps } from '@/types/interface';
+import { IFormData } from '@/types/interface';
+
+interface IFormProps {
+  variantAuth: string;
+  handleClick: (data: IFormData) => void;
+}
 
 const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   const {

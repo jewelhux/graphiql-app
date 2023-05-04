@@ -13,6 +13,7 @@ const SignUp: FC = () => {
 
   const handleRegister = (data: IFormData) => {
     const auth = getAuth();
+
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(async ({ user }) => {
         dispatch(

@@ -4,14 +4,9 @@ interface IUserSlice {
   token: string | null;
 }
 
-interface IFormProps {
-  variantAuth: string;
-  handleClick: (data: IFormData) => void;
-}
-
 interface IFormData {
   email: string;
   password: string;
 }
 
-export type { IUserSlice, IFormProps, IFormData };
+export type { IUserSlice, IFormData };

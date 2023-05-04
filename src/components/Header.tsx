@@ -5,9 +5,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/pages/hooks/useAuth';
+import { removeUser } from '@/pages/store/features/userSlice';
+import { useAppDispatch } from '@/pages/store/store';
 
 const Header: FC = () => {
   const { push } = useRouter();
+  const { isAuth } = useAuth();
+  const dispatch = useAppDispatch();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -23,14 +28,26 @@ const Header: FC = () => {
           >
             Graf
           </Typography>
-          <Button
-            color="inherit"
-            onClick={() => {
-              push('/auth');
-            }}
-          >
-            Login
-          </Button>
+          {isAuth ? (
+            <Button
+              color="inherit"
+              onClick={() => {
+                dispatch(removeUser());
+                push('/');
+              }}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button
+              color="inherit"
+              onClick={() => {
+                push('/auth');
+              }}
+            >
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
