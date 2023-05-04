@@ -1,39 +1,36 @@
 import { FC } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
+import { Typography, Button, Layout, Row, Col } from 'antd';
 
 const Header: FC = () => {
   const { push } = useRouter();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, cursor: 'pointer' }}
+    <Layout.Header style={{ flexGrow: 1 }}>
+      <Row justify="space-between">
+        <Col>
+          <Typography.Title
+            level={1}
+            style={{ flexGrow: 1, cursor: 'pointer' }}
             onClick={() => {
               push('/');
             }}
           >
-            Graf
-          </Typography>
+            GrafiQL
+          </Typography.Title>
+        </Col>
+        <Col>
           <Button
-            color="inherit"
+            type="default"
             onClick={() => {
               push('/auth');
             }}
           >
             Login
           </Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Col>
+      </Row>
+    </Layout.Header>
   );
 };
 
