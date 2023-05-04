@@ -14,6 +14,11 @@ const Header: FC = () => {
   const { isAuth } = useAuth();
   const dispatch = useAppDispatch();
 
+  const userLogOut = () => {
+    dispatch(removeUser());
+    push('/');
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -29,13 +34,7 @@ const Header: FC = () => {
             Graf
           </Typography>
           {isAuth ? (
-            <Button
-              color="inherit"
-              onClick={() => {
-                dispatch(removeUser());
-                push('/');
-              }}
-            >
+            <Button color="inherit" onClick={() => userLogOut()}>
               Logout
             </Button>
           ) : (

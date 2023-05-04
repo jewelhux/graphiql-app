@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Auth } from '@/types/enum';
 import { useAppDispatch } from '@/pages/store/store';
-import { setUser } from '@/pages/store/features/userSlice';
+import { removeUser, setUser } from '@/pages/store/features/userSlice';
 import { getAuth, createUserWithEmailAndPassword, getIdToken } from 'firebase/auth';
 import Form from '@/components/Form';
 import { IFormData } from '@/types/interface';
@@ -10,6 +10,11 @@ import { useRouter } from 'next/router';
 const SignUp: FC = () => {
   const dispatch = useAppDispatch();
   const { push } = useRouter();
+
+  const userLogOut = () => {
+    dispatch(removeUser());
+    push('/');
+  };
 
   const handleRegister = (data: IFormData) => {
     const auth = getAuth();
@@ -24,6 +29,9 @@ const SignUp: FC = () => {
           })
         );
         push('/graphi');
+        setTimeout(() => {
+          userLogOut();
+        }, 30000);
       })
       .catch(() => Error('Регистрация не завершена, ошибка'));
   };
