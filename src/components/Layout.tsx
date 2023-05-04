@@ -1,9 +1,9 @@
-import { Box } from '@mui/material';
 import Head from 'next/head';
 import { FC, ReactNode } from 'react';
 
 import Footer from './Footer';
 import Header from './Header';
+import { Layout as AntLayout } from 'antd';
 
 interface ILayoutProps {
   children?: ReactNode;
@@ -12,11 +12,16 @@ interface ILayoutProps {
 const Layout: FC<ILayoutProps> = ({ children }) => (
   <div className="test">
     <Head>
-      <title>RSFINAL</title>
+      <title>RS FINAL</title>
     </Head>
-    <Header />
-    <Box style={{ flex: 1 }}>{children}</Box>
-    <Footer />
+
+    <AntLayout>
+      <Header />
+      <AntLayout>
+        <AntLayout.Content style={{ flex: 1 }}>{children}</AntLayout.Content>
+      </AntLayout>
+      <Footer />
+    </AntLayout>
   </div>
 );
 
