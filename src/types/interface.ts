@@ -1,11 +1,17 @@
 interface IUserSlice {
-  id: number | null;
+  id: string | null;
   email: string | null;
   token: string | null;
 }
 
 interface IFormProps {
   variantAuth: string;
+  handleClick: (data: IFormData) => void;
 }
 
-export type { IUserSlice, IFormProps };
+interface IFormData {
+  email: string;
+  password: string;
+}
+
+export type { IUserSlice, IFormProps, IFormData };

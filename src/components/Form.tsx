@@ -22,17 +22,9 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Auth } from '@/types/enum';
 import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/utils/const';
+import { IFormData, IFormProps } from '@/types/interface';
 
-interface IFormProps {
-  variantAuth: string;
-}
-
-interface IFormData {
-  email: string;
-  password: string;
-}
-
-const Form: FC<IFormProps> = ({ variantAuth }) => {
+const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   const {
     register,
     handleSubmit,
@@ -46,8 +38,7 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onSubmit = (data: IFormData) => {
-    alert(data.password);
-    alert(data.email);
+    handleClick(data);
     reset();
   };
 
