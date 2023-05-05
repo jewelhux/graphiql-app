@@ -2,22 +2,25 @@ import { FC } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Button, Layout, Row, Col } from 'antd';
 
+const { Header: AntHeader } = Layout;
+const { Title } = Typography;
+
 const Header: FC = () => {
   const { push } = useRouter();
 
   return (
-    <Layout.Header style={{ flexGrow: 1 }}>
-      <Row justify="space-between">
+    <AntHeader>
+      <Row justify="space-between" align="middle">
         <Col>
-          <Typography.Title
+          <Title
             level={1}
-            style={{ flexGrow: 1, cursor: 'pointer' }}
+            className="title"
             onClick={() => {
               push('/');
             }}
           >
             GrafiQL
-          </Typography.Title>
+          </Title>
         </Col>
         <Col>
           <Button
@@ -30,7 +33,7 @@ const Header: FC = () => {
           </Button>
         </Col>
       </Row>
-    </Layout.Header>
+    </AntHeader>
   );
 };
 
