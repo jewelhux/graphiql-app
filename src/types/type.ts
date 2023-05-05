@@ -7,8 +7,4 @@ type Card = {
   text: string;
 };
 
-type sliceType = {
-  items: Card[];
-};
-
-export type { CardProps, Card, sliceType };
+export type { CardProps, Card };
