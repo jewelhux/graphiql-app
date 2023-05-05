@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Layout, Typography, Row, Col, Button } from 'antd';
+import { Layout, Typography, Row, Button, Space } from 'antd';
+
+const { Content } = Layout;
+const { Title } = Typography;
 
 const Auth: FC = () => {
   const { pathname, push } = useRouter();
@@ -11,39 +14,31 @@ const Auth: FC = () => {
         <title>{`RSFINAL${pathname}`}</title>
       </Head>
 
-      <Layout.Content
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#F8F8F8',
-        }}
-      >
-        <Typography.Title level={4}>Welcome to Graf</Typography.Title>
+      <Content>
+        <Title level={4} style={{ textAlign: 'center' }}>
+          Welcome to Graf
+        </Title>
         <Row justify="space-between">
-          <Col>
+          <Space size={'middle'}>
             <Button
-              type="link"
+              type="default"
               onClick={() => {
                 push('auth/signin');
               }}
             >
               Sign In
             </Button>
-          </Col>
-          <Col>
             <Button
-              type="link"
+              type="default"
               onClick={() => {
                 push('auth/signup');
               }}
             >
               Sign Up
             </Button>
-          </Col>
+          </Space>
         </Row>
-      </Layout.Content>
+      </Content>
     </>
   );
 };
