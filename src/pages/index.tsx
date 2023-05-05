@@ -1,5 +1,9 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { Typography } from 'antd';
+import Astronaut from '@/components/Astronaut';
+
+const { Title } = Typography;
 
 const Auth = () => {
   const { pathname } = useRouter();
@@ -7,10 +11,13 @@ const Auth = () => {
   return (
     <>
       <Head>
-        <title>{`RSFINAL${pathname}`}</title>
+        <title>{`RS FINAL${pathname}`}</title>
       </Head>
       <>
-        <h1>ТУТ СОЗДАТЬ КРАСИВУЮ ЗАСТАВКУ ЛУЧШЕ ВСЕГО ГИФКУ НО ЧТОТО ПРЯТНОЕ</h1>
+        <Title id="welcome" level={2}>
+          Welcome to GraphiQL
+        </Title>
+        <Astronaut />
       </>
     </>
   );
