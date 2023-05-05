@@ -1,33 +1,49 @@
-import { Layout, Row, Col, Typography, Image, Button } from 'antd';
+import { Layout, Row, Col, Button, Avatar, Space } from 'antd';
 import { ReactElement } from 'react';
+
+const { Footer: AntFooter } = Layout;
 
 function Footer(): ReactElement {
   return (
-    <Layout.Footer>
-      <Row justify="space-between">
+    <AntFooter className="footer">
+      <Row justify="space-between" align={'middle'} style={{ height: '55px' }}>
         <Col>
-          <Row>
-            <Button type="link" href="https://github.com/Jik789">
-              <Image alt="JiK" src="https://Images.githubusercontent.com/u/38877564?v=4" />
-            </Button>
-            <Button type="link" href="https://github.com/okitel">
-              <Image alt="okitel" src="https://Images.githubusercontent.com/u/79774026?v=4" />
-            </Button>
-            <Button type="link" href="https://github.com/Syderi">
-              <Image alt="Syderi" src="https://Images.githubusercontent.com/u/107023048?v=4" />
-            </Button>
-          </Row>
+          <Button type="link" href="https://github.com/Jik789" className="btn">
+            <Space>
+              <Avatar
+                className="github-avatar"
+                size="large"
+                alt="JiK"
+                src="https://avatars.githubusercontent.com/u/38877564?v=4"
+              />
+            </Space>
+          </Button>
+
+          <Button type="link" href="https://github.com/okitel" className="btn">
+            <Avatar
+              className="github-avatar"
+              size="large"
+              alt="okitel"
+              src="https://avatars.githubusercontent.com/u/79774026?v=4"
+            />
+          </Button>
+
+          <Button type="link" href="https://github.com/Syderi" className="btn">
+            <Avatar
+              className="github-avatar"
+              size="large"
+              alt="Syderi"
+              src="https://avatars.githubusercontent.com/u/107023048?v=4"
+            />
+          </Button>
         </Col>
         <Col>
-          <Typography.Title level={2}>2023</Typography.Title>
-        </Col>
-        <Col>
-          <Button type="link" href="https://rs.school/index.html">
-            <Image alt="JiK" src="https://rs.school/images/partners/logo-rs.svg" />
+          <Button type="link" href="https://rs.school/react/" className="rss">
+            <span className="rss-year">&apos;23</span>
           </Button>
         </Col>
       </Row>
-    </Layout.Footer>
+    </AntFooter>
   );
 }
 
