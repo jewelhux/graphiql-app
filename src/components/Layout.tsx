@@ -1,28 +1,33 @@
 import Head from 'next/head';
 import { FC, ReactNode } from 'react';
-
 import Footer from './Footer';
 import Header from './Header';
-import { Layout as AntLayout } from 'antd';
+import { Layout as AntLayout, Row, Col } from 'antd';
+
+const { Content } = AntLayout;
 
 interface ILayoutProps {
   children?: ReactNode;
 }
 
 const Layout: FC<ILayoutProps> = ({ children }) => (
-  <div className="test">
+  <>
     <Head>
       <title>RS FINAL</title>
     </Head>
 
-    <AntLayout>
+    <AntLayout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <AntLayout>
-        <AntLayout.Content style={{ flex: 1 }}>{children}</AntLayout.Content>
+      <AntLayout className="center">
+        <Row justify="center" gutter={[16, 24]}>
+          <Col>
+            <Content>{children}</Content>
+          </Col>
+        </Row>
       </AntLayout>
       <Footer />
     </AntLayout>
-  </div>
+  </>
 );
 
 export default Layout;
