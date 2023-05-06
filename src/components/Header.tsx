@@ -9,7 +9,7 @@ const Header: FC = () => {
   const { push } = useRouter();
 
   return (
-    <AntHeader>
+    <AntHeader className="header">
       <Row justify="space-between" align="middle">
         <Col>
           <Title
