@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from '@/types/enum';
 import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/utils/const';
+import { IFormData } from '@/types/interface';
 import { Form as AntForm, Input, Typography, Button, Avatar, Row, Card } from 'antd';
 import { LockOutlined, UserAddOutlined } from '@ant-design/icons';
 
@@ -9,14 +10,10 @@ const { Title } = Typography;
 
 interface IFormProps {
   variantAuth: string;
+  handleClick: (data: IFormData) => void;
 }
 
-interface IFormData {
-  email: string;
-  password: string;
-}
-
-const Form: FC<IFormProps> = ({ variantAuth }) => {
+const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   const { push } = useRouter();
 
   const [form] = AntForm.useForm();
@@ -26,8 +23,7 @@ const Form: FC<IFormProps> = ({ variantAuth }) => {
   };
 
   const onFinish = (data: IFormData) => {
-    alert(data.password);
-    alert(data.email);
+    handleClick(data);
     onReset();
   };
 
