@@ -1,13 +1,12 @@
 import { FC } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
+import { Typography, Button, Layout, Row, Col } from 'antd';
 import { useAuth } from '@/pages/hooks/useAuth';
 import { removeUser } from '@/pages/store/features/userSlice';
 import { useAppDispatch } from '@/pages/store/store';
+
+const { Header: AntHeader } = Layout;
+const { Title } = Typography;
 
 const Header: FC = () => {
   const { push } = useRouter();
@@ -20,26 +19,27 @@ const Header: FC = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, cursor: 'pointer' }}
+    <AntHeader className="header">
+      <Row justify="space-between" align="middle">
+        <Col>
+          <Title
+            level={1}
+            className="title"
             onClick={() => {
               push('/');
             }}
           >
-            Graf
-          </Typography>
+            GrafiQL
+          </Title>
+        </Col>
+        <Col>
           {isAuth ? (
-            <Button color="inherit" onClick={() => userLogOut()}>
+            <Button type="default" onClick={() => userLogOut()}>
               Logout
             </Button>
           ) : (
             <Button
-              color="inherit"
+              type="default"
               onClick={() => {
                 push('/auth');
               }}
@@ -47,9 +47,9 @@ const Header: FC = () => {
               Login
             </Button>
           )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Col>
+      </Row>
+    </AntHeader>
   );
 };
 

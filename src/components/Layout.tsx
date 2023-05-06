@@ -1,23 +1,33 @@
-import { Box } from '@mui/material';
 import Head from 'next/head';
 import { FC, ReactNode } from 'react';
-
 import Footer from './Footer';
 import Header from './Header';
+import { Layout as AntLayout, Row, Col } from 'antd';
+
+const { Content } = AntLayout;
 
 interface ILayoutProps {
   children?: ReactNode;
 }
 
 const Layout: FC<ILayoutProps> = ({ children }) => (
-  <div className="test">
+  <>
     <Head>
-      <title>RSFINAL</title>
+      <title>RS FINAL</title>
     </Head>
-    <Header />
-    <Box style={{ flex: 1 }}>{children}</Box>
-    <Footer />
-  </div>
+
+    <AntLayout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Header />
+      <AntLayout className="center">
+        <Row justify="center" gutter={[16, 24]}>
+          <Col>
+            <Content>{children}</Content>
+          </Col>
+        </Row>
+      </AntLayout>
+      <Footer />
+    </AntLayout>
+  </>
 );
 
 export default Layout;
