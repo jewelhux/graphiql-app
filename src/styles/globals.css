@@ -38,6 +38,19 @@ a {
   top: 0;
   z-index: 1;
   width: 100%;
+  transition: 0.5s ease-in-out;
+}
+
+.scrolled {
+  background: #ff9933 !important;
+  height: 65px;
+  padding-top: 0;
+}
+
+.unscrolled {
+  background: var(--dark) !important;
+  height: 80px;
+  padding-top: 10px;
 }
 
 .title {
