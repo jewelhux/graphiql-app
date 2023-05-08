@@ -28,7 +28,7 @@ const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   };
 
   const handleLinkToOtherAuth = () => {
-    push(`/auth/${variantAuth === Auth.signin ? 'signup' : 'signin'}`);
+    push(`/${variantAuth === Auth.signin ? 'signup' : 'signin'}`);
   };
 
   return (
