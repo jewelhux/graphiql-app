@@ -1,39 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
+import { graphql } from 'cm6-graphql';
+import { buildHTTPExecutor } from '@graphql-tools/executor-http';
+import { schemaFromExecutor } from '@graphql-tools/wrap';
+import { GraphQLSchema } from 'graphql/type';
 
 const url = 'https://rickandmortyapi.com/graphql';
+const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
 
 function QueryEditor() {
+  const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | null>(null);
   const [res, setRes] = useState<string>('');
-  const [value, setValue] = useState(`query {
-    characters(page: 2, filter: { name: "rick" }) {
-      info {
-        count
-      }
-      results {
-        name
-      }
-    }
-    location(id: 1) {
-      id
-    }
-    episodesByIds(ids: [1, 2]) {
-      id
-    }
-  }`);
+  const [value, setValue] = useState(`query {}`);
+  const [variables, setVariables] = useState(`{}`);
 
-  const onChange = React.useCallback((value: string) => {
+  useEffect(() => {
+    const fetchSchema = async () => {
+      const remoteExecutor = buildHTTPExecutor({
+        endpoint: url,
+      });
+
+      const postsSubschema = {
+        schema: await schemaFromExecutor(remoteExecutor),
+        executor: remoteExecutor,
+      };
+
+      const fields = postsSubschema.schema.getQueryType()?.getFields();
+      const result = JSON.parse(JSON.stringify(fields));
+      alert(result);
+      setMyGraphQLSchema(postsSubschema.schema);
+    };
+    fetchSchema();
+  }, []);
+
+  const onChangeValue = React.useCallback((value: string) => {
     setValue(value);
   }, []);
 
-  const makeRequest = async (query: unknown): Promise<string> => {
+  const onChangeVariables = React.useCallback((value: string) => {
+    setVariables(value);
+  }, []);
+
+  const makeRequest = async (query: string): Promise<string> => {
+    const reguestBody = {
+      query,
+      variables: JSON.parse(variables),
+    };
+
     const res = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify(reguestBody),
     });
     return await res.json();
   };
@@ -45,15 +64,25 @@ function QueryEditor() {
 
   return (
     <>
-      <CodeMirror
-        value={value}
-        height="200px"
-        width="100%"
-        extensions={[javascript({ jsx: true })]}
-        onChange={onChange}
-      />
-      <button onClick={handleSendRequest}>Send request</button>
-      <ResponseViewer response={res} />
+      {myGraphQLSchema ? (
+        <>
+          <CodeMirror
+            value={value}
+            height="200px"
+            width="100%"
+            extensions={[graphql(myGraphQLSchema)]}
+            onChange={onChangeValue}
+          />
+          <div>variables</div>
+          <CodeMirror value={variables} height="100px" width="100%" onChange={onChangeVariables} />
+          <div>header</div>
+          <CodeMirror value={headerGraphqlRequest} height="100px" width="100%" readOnly={true} />
+          <button onClick={handleSendRequest}>Send request</button>
+          <ResponseViewer response={res} />
+        </>
+      ) : (
+        <div>Loading</div>
+      )}
     </>
   );
 }
