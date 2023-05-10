@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Button, Layout, Row, Col, Space } from 'antd';
 import { useAuth } from '@/pages/hooks/useAuth';
@@ -13,25 +13,24 @@ const Header: FC = () => {
   const { isAuth } = useAuth();
   const dispatch = useAppDispatch();
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const userLogOut = () => {
     dispatch(removeUser());
     push('/');
   };
 
-  const next = document.getElementById('__next');
-
-  const headerColorChange = () => {
-    const header = document.querySelector('.header');
-    if (next && next.scrollTop > 0) {
-      header?.classList.remove('unscrolled');
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-      header?.classList.add('unscrolled');
-    }
-  };
-
   useEffect(() => {
+    const next = document.getElementById('__next');
+
+    const headerColorChange = () => {
+      if (next && next.scrollTop > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
     next?.addEventListener('scroll', headerColorChange);
     return function cleanup() {
       next?.removeEventListener('scroll', headerColorChange);
@@ -39,7 +38,7 @@ const Header: FC = () => {
   });
 
   return (
-    <AntHeader className="header unscrolled">
+    <AntHeader className={`header ${isScrolled ? 'scrolled' : 'unscrolled'}`}>
       <Row justify="space-between" align="middle">
         <Col>
           <Title
