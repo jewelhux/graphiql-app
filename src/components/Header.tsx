@@ -35,7 +35,7 @@ const Header: FC = () => {
     return function cleanup() {
       next?.removeEventListener('scroll', headerColorChange);
     };
-  });
+  }, []);
 
   return (
     <AntHeader className={`header ${isScrolled ? 'scrolled' : 'unscrolled'}`}>
