@@ -1,34 +1,49 @@
+import { Layout, Row, Col, Button, Avatar, Space } from 'antd';
 import { ReactElement } from 'react';
-import { Toolbar, Container, Typography, Box, Avatar, Link, Divider } from '@mui/material';
+
+const { Footer: AntFooter } = Layout;
 
 function Footer(): ReactElement {
   return (
-    <Box bgcolor={'backround.default'}>
-      <Divider />
-      <Container>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', columnGap: '5px' }}>
-            <Link href="https://github.com/Jik789">
-              <Avatar alt="JiK" src="https://avatars.githubusercontent.com/u/38877564?v=4" />
-            </Link>
-            <Link href="https://github.com/okitel">
-              <Avatar alt="okitel" src="https://avatars.githubusercontent.com/u/79774026?v=4" />
-            </Link>
-            <Link href="https://github.com/Syderi">
-              <Avatar alt="Syderi" src="https://avatars.githubusercontent.com/u/107023048?v=4" />
-            </Link>
-          </Box>
-          <Typography sx={{ fontWeight: '600' }}>2023</Typography>
-          <Link href="https://rs.school/index.html">
+    <AntFooter className="footer">
+      <Row justify="space-between" align={'middle'} style={{ height: '55px' }}>
+        <Col>
+          <Button type="link" href="https://github.com/Jik789" className="btn">
+            <Space>
+              <Avatar
+                className="github-avatar"
+                size="large"
+                alt="JiK"
+                src="https://avatars.githubusercontent.com/u/38877564?v=4"
+              />
+            </Space>
+          </Button>
+
+          <Button type="link" href="https://github.com/okitel" className="btn">
             <Avatar
-              sx={{ objectFit: 'contain', width: '100%', height: '50px' }}
-              alt="JiK"
-              src="https://rs.school/images/partners/logo-rs.svg"
+              className="github-avatar"
+              size="large"
+              alt="okitel"
+              src="https://avatars.githubusercontent.com/u/79774026?v=4"
             />
-          </Link>
-        </Toolbar>
-      </Container>
-    </Box>
+          </Button>
+
+          <Button type="link" href="https://github.com/Syderi" className="btn">
+            <Avatar
+              className="github-avatar"
+              size="large"
+              alt="Syderi"
+              src="https://avatars.githubusercontent.com/u/107023048?v=4"
+            />
+          </Button>
+        </Col>
+        <Col>
+          <Button type="link" href="https://rs.school/react/" className="rss">
+            <span className="rss-year">&apos;23</span>
+          </Button>
+        </Col>
+      </Row>
+    </AntFooter>
   );
 }
 

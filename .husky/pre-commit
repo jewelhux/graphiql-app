@@ -9,12 +9,6 @@ if [ "$branch" = "main" ]; then
   exit 1
 fi
 
-# Check if there are unstaged changes
-if ! git diff --exit-code --quiet; then
-  echo "There are unstaged changes. Please stage your changes before committing."
-  exit 1
-fi
-
 # Run lint-staged command for both workspaces
 npx lint-staged --config=.lintstagedrc
 
