@@ -5,7 +5,7 @@ import Form from '@/components/Form';
 import { IFormData } from '@/types/interface';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from '../store/store';
-import { removeUser, setUser } from '../store/features/userSlice';
+import { setUser } from '../store/features/userSlice';
 import { useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -22,11 +22,6 @@ const SignIn: FC = () => {
     }
   }, [isAuth, router]);
 
-  const userLogOut = () => {
-    dispatch(removeUser());
-    push('/');
-  };
-
   const handleLogin = (data: IFormData) => {
     const auth = getAuth();
 
@@ -40,9 +35,6 @@ const SignIn: FC = () => {
           })
         );
         push('/graphi');
-        setTimeout(() => {
-          userLogOut();
-        }, 30000);
       })
       .catch(() => Error('Вход не завершен, ошибка'));
   };
