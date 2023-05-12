@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Auth } from '@/types/enum';
-import { useAppDispatch } from '@/pages/store/store';
-import { setUser } from '@/pages/store/features/userSlice';
+import { useAppDispatch } from '@/store/store';
+import { setUser } from '@/store/features/userSlice';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import Form from '@/components/Form';
 import { IFormData } from '@/types/interface';

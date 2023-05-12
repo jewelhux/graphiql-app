@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Button, Layout, Row, Col, Space } from 'antd';
-import { useAuth } from '@/pages/hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 import { getAuth } from 'firebase/auth';
 
 const { Header: AntHeader } = Layout;
