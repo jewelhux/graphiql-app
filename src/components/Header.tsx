@@ -1,22 +1,39 @@
+'use client';
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Button, Layout, Row, Col, Space } from 'antd';
-import { useAuth } from '@/pages/hooks/useAuth';
-import { removeUser } from '@/pages/store/features/userSlice';
-import { useAppDispatch } from '@/pages/store/store';
+import { useAuth } from '@/hooks/useAuth';
+import { getAuth } from 'firebase/auth';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
 
 const Header: FC = () => {
   const { push } = useRouter();
+  const [localAuth, setLocalAuth] = useState(false);
   const { isAuth } = useAuth();
-  const dispatch = useAppDispatch();
+  const auth = getAuth();
+
+  useEffect(
+    () =>
+      setLocalAuth(
+        window.localStorage.isAuth ? JSON.parse(window.localStorage.isAuth).auth : false
+      ),
+    [isAuth]
+  );
+  useEffect(
+    () =>
+      setLocalAuth(
+        window.localStorage.isAuth ? JSON.parse(window.localStorage.isAuth).auth : false
+      ),
+    []
+  );
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const userLogOut = () => {
-    dispatch(removeUser());
+  const userLogOut = async () => {
+    await auth.signOut();
+    setLocalAuth(false);
     push('/');
   };
 
@@ -52,7 +69,7 @@ const Header: FC = () => {
           </Title>
         </Col>
         <Col>
-          {isAuth ? (
+          {localAuth ? (
             <Button type="default" onClick={() => userLogOut()}>
               Logout
             </Button>
