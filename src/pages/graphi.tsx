@@ -1,4 +1,16 @@
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useRouter } from 'next/router';
+
 const Graphi = () => {
+  const router = useRouter();
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      router.push('/');
+    }
+  });
+
   return (
     <>
       <h1>
