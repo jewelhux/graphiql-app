@@ -11,6 +11,7 @@
     "pre-commit": "lint-staged"
   },
   "devDependencies": {
+    "@2fd/graphdoc": "^2.4.0",
     "@codemirror/lang-javascript": "^6.1.7",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "autoprefixer": "^10.4.14",
@@ -22,6 +23,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "graphql-markdown": "^7.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^12.5.0",
     "prettier": "^2.6.2",
@@ -39,9 +41,9 @@
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "@uiw/react-codemirror": "^4.19.16",
+    "antd": "^5.4.6",
     "cm6-graphql": "^0.0.5",
     "codemirror-graphql": "^2.0.6",
-    "antd": "^5.4.6",
     "firebase": "^9.21.0",
     "graphql": "^16.6.0",
     "next": "13.3.2",
