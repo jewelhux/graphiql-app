@@ -3,4 +3,9 @@ enum Auth {
   signin = 'Sign In',
 }
 
-export { Auth };
+enum SiteLanguage {
+  russian = 'Русский ',
+  english = 'English',
+}
+
+export { Auth, SiteLanguage };
