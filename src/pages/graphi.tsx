@@ -1,3 +1,4 @@
+import QueryEditor from '@/components/QueryEditor';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -18,6 +19,7 @@ const Graphi = () => {
     <>
       <h1>
         Добро пожаловать на страничку Graphi, это основная страница редактора после авторизации.
+        <QueryEditor />
       </h1>
     </>
   );
