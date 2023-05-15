@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Typography, Button, Layout, Row, Col, Space } from 'antd';
 import { useAuth } from '@/hooks/useAuth';
 import { getAuth } from 'firebase/auth';
+import Language from './Language';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
@@ -68,6 +69,7 @@ const Header: FC = () => {
             GrafiQL
           </Title>
         </Col>
+        <Language />
         <Col>
           {localAuth ? (
             <Button type="default" onClick={() => userLogOut()}>
