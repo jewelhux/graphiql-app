@@ -7,14 +7,14 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         welcome: {
-          title: 'Welcome to GraphiQL TEST',
+          title: 'Welcome to GraphiQL',
         },
       },
     },
     ru: {
       translation: {
         welcome: {
-          title: 'ДОБРО ПОЖАЛОВАТЬ GraphiQL ТЕСТ',
+          title: 'ДОБРО ПОЖАЛОВАТЬ GraphiQL',
         },
       },
     },

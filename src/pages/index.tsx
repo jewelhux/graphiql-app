@@ -16,7 +16,6 @@ const Auth = () => {
       </Head>
       <>
         <Title id="welcome" level={2}>
-          Welcome to GraphiQL
           {t('welcome.title')}
         </Title>
         <Astronaut />
