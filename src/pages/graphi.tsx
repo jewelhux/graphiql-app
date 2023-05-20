@@ -15,14 +15,7 @@ const Graphi = () => {
     });
   }, [auth, router]);
 
-  return (
-    <>
-      <h1>
-        Добро пожаловать на страничку Graphi, это основная страница редактора после авторизации.
-        <QueryEditor />
-      </h1>
-    </>
-  );
+  return <QueryEditor />;
 };
 
 export default Graphi;

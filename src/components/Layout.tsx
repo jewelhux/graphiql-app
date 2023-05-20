@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { FC, ReactNode } from 'react';
+import { useRouter } from 'next/router';
 import Footer from './Footer';
 import Header from './Header';
 import { Layout as AntLayout, Row, Col } from 'antd';
@@ -16,6 +17,7 @@ interface ILayoutProps {
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const auth = getAuth();
   const dispatch = useAppDispatch();
+  const { pathname } = useRouter();
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -31,6 +33,8 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
     }
   });
 
+  const fullWidthStyle = pathname === '/graphi' ? { width: '90%' } : {};
+
   return (
     <>
       <Head>
@@ -39,13 +43,15 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 
       <AntLayout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Header />
-        <AntLayout className="center">
-          <Row justify="center" gutter={[16, 24]}>
-            <Col>
-              <Content>{children}</Content>
-            </Col>
-          </Row>
+
+        <AntLayout className="center top">
+          <Content style={fullWidthStyle}>
+            <Row justify="center" gutter={[16, 24]}>
+              <Col span={24}>{children}</Col>
+            </Row>
+          </Content>
         </AntLayout>
+
         <Footer />
       </AntLayout>
     </>

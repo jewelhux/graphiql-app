@@ -14,7 +14,7 @@ i18n.use(initReactI18next).init({
     ru: {
       translation: {
         welcome: {
-          title: 'ДОБРО ПОЖАЛОВАТЬ GraphiQL',
+          title: 'ДОБРО ПОЖАЛОВАТЬ В GraphiQL',
         },
       },
     },

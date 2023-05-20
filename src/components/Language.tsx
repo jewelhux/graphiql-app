@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const Language: FC = () => {
   // const [storageLang, setStorageLang] = useState(localStorage?.getItem('lang'));
-  const [storageLang, setStorageLang] = useState<string | null>('');
+  const [storageLang, setStorageLang] = useState<string | null>('en');
   const [lang, setLang] = useState<string | SiteLanguage>(
     storageLang === 'en' ? SiteLanguage.english : SiteLanguage.russian
   );
