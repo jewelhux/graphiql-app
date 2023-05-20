@@ -16,15 +16,8 @@ interface IFormProps {
 const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   const { push } = useRouter();
 
-  const [form] = AntForm.useForm();
-
-  const onReset = () => {
-    form.resetFields();
-  };
-
   const onFinish = (data: IFormData) => {
     handleClick(data);
-    onReset();
   };
 
   const handleLinkToOtherAuth = () => {
