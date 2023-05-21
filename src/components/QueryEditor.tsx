@@ -6,6 +6,7 @@ import { schemaFromExecutor } from '@graphql-tools/wrap';
 import { GraphQLSchema } from 'graphql/type';
 import { Col, Row, Button, Space, Tooltip, Tabs } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const url = 'https://rickandmortyapi.com/graphql';
 const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
@@ -16,6 +17,7 @@ function QueryEditor() {
   const [value, setValue] = useState(`query {}`);
   const [variables, setVariables] = useState(`{}`);
   const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchSchema = async () => {
@@ -66,7 +68,7 @@ function QueryEditor() {
   const tabsItems = [
     {
       key: '1',
-      label: 'Variables',
+      label: t('graphiql.variables'),
       children: (
         <CodeMirror
           value={variables}
@@ -79,7 +81,7 @@ function QueryEditor() {
     },
     {
       key: '2',
-      label: 'Headers',
+      label: t('graphiql.headers'),
       children: (
         <CodeMirror
           value={headerGraphqlRequest}
@@ -100,7 +102,7 @@ function QueryEditor() {
             <Col>
               <Space direction="vertical">
                 <Row>
-                  <Tooltip title="Execute query">
+                  <Tooltip title={t('graphiql.query') || 'Execute query'}>
                     <Button
                       type="primary"
                       icon={<CaretRightFilled />}
@@ -109,7 +111,7 @@ function QueryEditor() {
                   </Tooltip>
                 </Row>
                 <Row>
-                  <Tooltip title="Docs" placement="bottom">
+                  <Tooltip title={t('graphiql.docs') || 'Docs'} placement="bottom">
                     <Button
                       type="default"
                       icon={<BookTwoTone />}

@@ -5,6 +5,7 @@ import { EMAIL_REGEXP, PASSWORD_REGEXP } from '@/utils/const';
 import { IFormData } from '@/types/interface';
 import { Form as AntForm, Input, Typography, Button, Avatar, Row, Col, Card } from 'antd';
 import { LockOutlined, UserAddOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
@@ -15,6 +16,7 @@ interface IFormProps {
 
 const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   const { push } = useRouter();
+  const { t } = useTranslation();
 
   const onFinish = (data: IFormData) => {
     handleClick(data);
@@ -23,6 +25,9 @@ const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
   const handleLinkToOtherAuth = () => {
     push(`/${variantAuth === Auth.signin ? 'signup' : 'signin'}`);
   };
+
+  const formTitle = variantAuth === 'Sign In' ? 'form.titleIn' : 'form.titleUp';
+  const btnTitle = variantAuth === 'Sign In' ? 'form.buttonIn' : 'form.buttonUp';
 
   return (
     <Row justify="center" align="middle" style={{ height: 'calc(100vh - 200px)' }}>
@@ -41,43 +46,45 @@ const Form: FC<IFormProps> = ({ variantAuth, handleClick }) => {
                 className="icon"
                 icon={variantAuth === Auth.signin ? <LockOutlined /> : <UserAddOutlined />}
               />
-              <Title level={2}>{variantAuth}</Title>
+              <Title level={2}>{t(formTitle)}</Title>
             </div>
 
             <AntForm.Item
               name="email"
               rules={[
-                { required: true, message: 'Please enter your email!' },
+                { required: true, message: t('form.emailInput') || 'Please enter your email!' },
                 {
                   pattern: EMAIL_REGEXP,
-                  message: 'Please enter a valid email address',
+                  message: t('form.emailValid') || 'Please enter a valid email address',
                 },
               ]}
               wrapperCol={{ span: '100%' }}
             >
-              <Input placeholder="Email" type="email" />
+              <Input placeholder={t('form.email') || 'Email'} type="email" />
             </AntForm.Item>
             <AntForm.Item
               name="password"
               rules={[
-                { required: true, message: 'Please enter your password!' },
+                { required: true, message: t('form.passInput') || 'Please enter your password!' },
                 {
                   pattern: PASSWORD_REGEXP,
-                  message: 'Min 8 chars (uppercase, lowercase, digit and special char)',
+                  message:
+                    t('form.passValid') ||
+                    'Min 8 chars (uppercase, lowercase, digit and special char)',
                 },
               ]}
               wrapperCol={{ span: '100%' }}
             >
-              <Input.Password placeholder="Password" />
+              <Input.Password placeholder={t('form.password') || 'Password'} />
             </AntForm.Item>
             <Row justify="center">
               <Button disabled={false} type="primary" htmlType="submit" block>
-                {variantAuth}
+                {t(btnTitle)}
               </Button>
             </Row>
             <Row justify="end">
               <Button disabled={false} type="link" onClick={handleLinkToOtherAuth}>
-                {`${variantAuth === Auth.signin ? Auth.signup : Auth.signin}`}
+                {variantAuth === Auth.signin ? t('form.titleUp') : t('form.titleIn')}
               </Button>
             </Row>
           </Card>
