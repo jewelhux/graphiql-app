@@ -5,6 +5,7 @@ import { Typography, Button, Layout, Row, Col, Space } from 'antd';
 import { useAuth } from '@/hooks/useAuth';
 import { getAuth } from 'firebase/auth';
 import Language from './Language';
+import { useTranslation } from 'react-i18next';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
@@ -14,6 +15,7 @@ const Header: FC = () => {
   const [localAuth, setLocalAuth] = useState(false);
   const { isAuth } = useAuth();
   const auth = getAuth();
+  const { t } = useTranslation();
 
   useEffect(
     () =>
@@ -69,11 +71,13 @@ const Header: FC = () => {
             GrafiQL
           </Title>
         </Col>
-        <Language />
+        <Col>
+          <Language />
+        </Col>
         <Col>
           {localAuth ? (
             <Button type="default" onClick={() => userLogOut()}>
-              Logout
+              {t('auth.logout')}
             </Button>
           ) : (
             <Space>
@@ -83,7 +87,7 @@ const Header: FC = () => {
                   push('/signin');
                 }}
               >
-                Sign In
+                {t('auth.signIn')}
               </Button>
               <Button
                 type="default"
@@ -91,7 +95,7 @@ const Header: FC = () => {
                   push('/signup');
                 }}
               >
-                Sign Up
+                {t('auth.signUp')}
               </Button>
             </Space>
           )}

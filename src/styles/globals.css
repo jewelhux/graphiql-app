@@ -1,4 +1,7 @@
 /* Base styles */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+
+
 :root {
   --primary: rgb(22, 119, 255, 1);
   --light: #ffffff;
@@ -27,8 +30,11 @@ a {
 
 .center {
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+
+.top {
+  margin-top: 10px;
 }
 
 /* Header styles */
@@ -97,6 +103,7 @@ a {
   animation-fill-mode: forwards;
   transition: 0.3s ease-in-out;
   user-select: none;
+  margin-top: 100px;
 }
 
 #welcome:hover {
@@ -647,4 +654,28 @@ a {
 .s6 {
   top: 60px;
   left: 370px;
+}
+
+/* Editor styles */
+
+.cm-editor {
+  height: 600px;
+}
+
+.docs-hidden {
+  display: none;
+}
+
+.editor-visible,
+.docs-visible {
+  display: block;
+}
+
+.editor-visible > .cm-editor {
+  height: 150px;
+}
+
+.cm-editor .cm-content * {
+  font-family: 'Ubuntu Mono';
+  font-size: 15px;
 }
