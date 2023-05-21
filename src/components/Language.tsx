@@ -1,6 +1,7 @@
 import { SiteLanguage } from '@/types/enum';
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Select } from 'antd';
 
 const Language: FC = () => {
   // const [storageLang, setStorageLang] = useState(localStorage?.getItem('lang'));
@@ -18,21 +19,27 @@ const Language: FC = () => {
     }
   }, [i18n, storageLang]);
 
-  const handleChangeLang = (event: ChangeEvent<HTMLSelectElement>) => {
-    setLang(event.target.value);
-    if (event.target.value === SiteLanguage.russian) {
+  const handleChangeLang = (value: string) => {
+    setLang(value);
+    if (value === SiteLanguage.russian) {
       setStorageLang('ru');
     } else {
       setStorageLang('en');
     }
   };
 
-  return (
-    <select value={lang} onChange={handleChangeLang}>
-      <option value={SiteLanguage.russian}>{SiteLanguage.russian}</option>
-      <option value={SiteLanguage.english}>{SiteLanguage.english}</option>
-    </select>
-  );
+  const options = [
+    {
+      label: SiteLanguage.russian,
+      value: SiteLanguage.russian,
+    },
+    {
+      label: SiteLanguage.english,
+      value: SiteLanguage.english,
+    },
+  ];
+
+  return <Select value={lang} options={options} onChange={handleChangeLang} />;
 };
 
 export default Language;
