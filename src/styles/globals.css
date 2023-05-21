@@ -659,10 +659,9 @@ a {
 /* Editor styles */
 
 .cm-editor {
-  height: 700px;
+  height: 600px;
 }
 
-.editor-hidden,
 .docs-hidden {
   display: none;
 }
@@ -673,7 +672,7 @@ a {
 }
 
 .editor-visible > .cm-editor {
-  height: 200px;
+  height: 150px;
 }
 
 .cm-editor .cm-content * {

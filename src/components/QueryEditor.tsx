@@ -4,7 +4,7 @@ import { graphql } from 'cm6-graphql';
 import { buildHTTPExecutor } from '@graphql-tools/executor-http';
 import { schemaFromExecutor } from '@graphql-tools/wrap';
 import { GraphQLSchema } from 'graphql/type';
-import { Col, Row, Button, Space, Tooltip } from 'antd';
+import { Col, Row, Button, Space, Tooltip, Tabs } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 
 const url = 'https://rickandmortyapi.com/graphql';
@@ -15,8 +15,6 @@ function QueryEditor() {
   const [response, setResponse] = useState<string>('');
   const [value, setValue] = useState(`query {}`);
   const [variables, setVariables] = useState(`{}`);
-  const [isVariablesVisible, setIsVariablesVisible] = useState<boolean>(false);
-  const [isHeadersVisible, setIsHeadersVisible] = useState<boolean>(false);
   const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -56,16 +54,6 @@ function QueryEditor() {
     return await res.json();
   };
 
-  const handleVariablesClick = () => {
-    setIsHeadersVisible(false);
-    setIsVariablesVisible(!isVariablesVisible);
-  };
-
-  const handleHeadersClick = () => {
-    setIsVariablesVisible(false);
-    setIsHeadersVisible(!isHeadersVisible);
-  };
-
   const handleDocsClick = () => {
     setIsDocsVisible(!isDocsVisible);
   };
@@ -75,11 +63,40 @@ function QueryEditor() {
     if (data) setResponse(data);
   };
 
+  const tabsItems = [
+    {
+      key: '1',
+      label: 'Variables',
+      children: (
+        <CodeMirror
+          value={variables}
+          height="100px"
+          width="100%"
+          onChange={onChangeVariables}
+          className="editor-visible"
+        />
+      ),
+    },
+    {
+      key: '2',
+      label: 'Headers',
+      children: (
+        <CodeMirror
+          value={headerGraphqlRequest}
+          height="100px"
+          width="100%"
+          readOnly={true}
+          className="editor-visible"
+        />
+      ),
+    },
+  ];
+
   return (
     <>
       {myGraphQLSchema ? (
         <>
-          <Row gutter={24}>
+          <Row gutter={24} style={{ marginBottom: '10px' }}>
             <Col>
               <Space direction="vertical">
                 <Row>
@@ -107,7 +124,7 @@ function QueryEditor() {
               <Col span={isDocsVisible ? 8 : 0}>
                 <iframe
                   className={isDocsVisible ? 'docs-visible' : 'docs-hidden'}
-                  style={{ width: '100%', height: '700px' }}
+                  style={{ width: '100%', height: '600px' }}
                   src="/docs/index.html"
                   title="GraphQL documentation"
                 ></iframe>
@@ -120,33 +137,7 @@ function QueryEditor() {
                   extensions={[graphql(myGraphQLSchema)]}
                   onChange={onChangeValue}
                 />
-
-                <Row justify="center" style={{ margin: '10px 0' }}>
-                  <Space>
-                    <Button type="default" onClick={handleVariablesClick}>
-                      Variables
-                    </Button>
-                    <Button type="default" onClick={handleHeadersClick}>
-                      Headers
-                    </Button>
-                  </Space>
-                </Row>
-
-                <CodeMirror
-                  value={variables}
-                  height="100px"
-                  width="100%"
-                  onChange={onChangeVariables}
-                  className={isVariablesVisible ? 'editor-visible' : 'editor-hidden'}
-                />
-
-                <CodeMirror
-                  value={headerGraphqlRequest}
-                  height="100px"
-                  width="100%"
-                  readOnly={true}
-                  className={isHeadersVisible ? 'editor-visible' : 'editor-hidden'}
-                />
+                <Tabs centered items={tabsItems} />
               </Col>
 
               <Col span={isDocsVisible ? 8 : 12}>
