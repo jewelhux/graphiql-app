@@ -12,7 +12,7 @@ const url = 'https://rickandmortyapi.com/graphql';
 const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
 
 function QueryEditor() {
-  const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | null>(null);
+  const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | undefined>(undefined);
   const [response, setResponse] = useState<string>('');
   const [value, setValue] = useState(`query {}`);
   const [variables, setVariables] = useState(`{}`);
@@ -20,16 +20,20 @@ function QueryEditor() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const fetchSchema = async () => {
-      const remoteExecutor = buildHTTPExecutor({ endpoint: url });
+    try {
+      const fetchSchema = async () => {
+        const remoteExecutor = buildHTTPExecutor({ endpoint: url });
 
-      const postsSubschema = {
-        schema: await schemaFromExecutor(remoteExecutor),
-        executor: remoteExecutor,
+        const postsSubschema = {
+          schema: await schemaFromExecutor(remoteExecutor),
+          executor: remoteExecutor,
+        };
+        setMyGraphQLSchema(postsSubschema.schema);
       };
-      setMyGraphQLSchema(postsSubschema.schema);
-    };
-    fetchSchema();
+      fetchSchema();
+    } catch (error) {
+      setMyGraphQLSchema(undefined);
+    }
   }, []);
 
   const onChangeValue = React.useCallback((value: string) => {
@@ -96,64 +100,60 @@ function QueryEditor() {
 
   return (
     <>
-      {myGraphQLSchema ? (
-        <>
-          <Row gutter={24} style={{ marginBottom: '10px' }}>
-            <Col>
-              <Space direction="vertical">
-                <Row>
-                  <Tooltip title={t('graphiql.query') || 'Execute query'}>
-                    <Button
-                      type="primary"
-                      icon={<CaretRightFilled />}
-                      onClick={handleSendRequest}
-                    ></Button>
-                  </Tooltip>
-                </Row>
-                <Row>
-                  <Tooltip title={t('graphiql.docs') || 'Docs'} placement="bottom">
-                    <Button
-                      type="default"
-                      icon={<BookTwoTone />}
-                      onClick={handleDocsClick}
-                    ></Button>
-                  </Tooltip>
-                </Row>
-              </Space>
-            </Col>
+      <>
+        <Row gutter={24} style={{ marginBottom: '10px' }}>
+          <Col>
+            <Space direction="vertical">
+              <Row>
+                <Tooltip title={t('graphiql.query') || 'Execute query'}>
+                  <Button
+                    type="primary"
+                    icon={<CaretRightFilled />}
+                    onClick={handleSendRequest}
+                  ></Button>
+                </Tooltip>
+              </Row>
+              <Row>
+                <Tooltip title={t('graphiql.docs') || 'Docs'} placement="bottom">
+                  <Button type="default" icon={<BookTwoTone />} onClick={handleDocsClick}></Button>
+                </Tooltip>
+              </Row>
+            </Space>
+          </Col>
 
-            <Row gutter={24} style={{ width: 'calc(100% - 60px)' }}>
-              <Col span={isDocsVisible ? 8 : 0}>
+          <Row gutter={24} style={{ width: 'calc(100% - 60px)' }}>
+            <Col span={isDocsVisible ? 8 : 0}>
+              {!myGraphQLSchema ? (
+                <p>Sorry server return Error Doc</p>
+              ) : (
                 <iframe
                   className={isDocsVisible ? 'docs-visible' : 'docs-hidden'}
                   style={{ width: '100%', height: '600px' }}
                   src="/docs/index.html"
                   title="GraphQL documentation"
                 ></iframe>
-              </Col>
-              <Col span={isDocsVisible ? 8 : 12}>
-                <CodeMirror
-                  value={value}
-                  height="200px"
-                  width="100%"
-                  extensions={[graphql(myGraphQLSchema)]}
-                  onChange={onChangeValue}
-                />
-                <Tabs centered items={tabsItems} />
-              </Col>
+              )}
+            </Col>
+            <Col span={isDocsVisible ? 8 : 12}>
+              <CodeMirror
+                value={value}
+                height="200px"
+                width="100%"
+                extensions={[graphql(myGraphQLSchema)]}
+                onChange={onChangeValue}
+              />
+              <Tabs centered items={tabsItems} />
+            </Col>
 
-              <Col span={isDocsVisible ? 8 : 12}>
-                <CodeMirror
-                  value={response ? JSON.stringify(response, null, 2) : ''}
-                  readOnly={true}
-                />
-              </Col>
-            </Row>
+            <Col span={isDocsVisible ? 8 : 12}>
+              <CodeMirror
+                value={response ? JSON.stringify(response, null, 2) : ''}
+                readOnly={true}
+              />
+            </Col>
           </Row>
-        </>
-      ) : (
-        <div>Loading</div>
-      )}
+        </Row>
+      </>
     </>
   );
 }

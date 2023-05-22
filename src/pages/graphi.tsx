@@ -1,11 +1,12 @@
-import QueryEditor from '@/components/QueryEditor';
+// import QueryEditor from '@/components/QueryEditor';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
 
 const Graphi = () => {
   const router = useRouter();
   const auth = getAuth();
+  const QueryEditor = lazy(() => import('@/components/QueryEditor'));
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -15,7 +16,11 @@ const Graphi = () => {
     });
   }, [auth, router]);
 
-  return <QueryEditor />;
+  return (
+    <Suspense fallback={<div>LOADING.....</div>}>
+      <QueryEditor />;
+    </Suspense>
+  );
 };
 
 export default Graphi;
