@@ -679,3 +679,9 @@ a {
   font-family: 'Ubuntu Mono';
   font-size: 15px;
 }
+
+.loader {
+  margin: 150px 0;
+  text-align: center;
+  border-radius: 4px;
+}

@@ -1,4 +1,5 @@
 // import QueryEditor from '@/components/QueryEditor';
+import Loader from '@/components/Loader';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { Suspense, useEffect, lazy } from 'react';
@@ -17,7 +18,7 @@ const Graphi = () => {
   }, [auth, router]);
 
   return (
-    <Suspense fallback={<div>LOADING.....</div>}>
+    <Suspense fallback={<Loader />}>
       <QueryEditor />;
     </Suspense>
   );

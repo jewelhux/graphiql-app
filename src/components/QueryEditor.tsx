@@ -7,6 +7,7 @@ import { GraphQLSchema } from 'graphql/type';
 import { Col, Row, Button, Space, Tooltip, Tabs } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { startTransition } from 'react';
 
 const url = 'https://rickandmortyapi.com/graphql';
 const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
@@ -28,11 +29,15 @@ function QueryEditor() {
           schema: await schemaFromExecutor(remoteExecutor),
           executor: remoteExecutor,
         };
-        setMyGraphQLSchema(postsSubschema.schema);
+        startTransition(() => {
+          setMyGraphQLSchema(postsSubschema.schema);
+        });
       };
       fetchSchema();
-    } catch (error) {
-      setMyGraphQLSchema(undefined);
+    } catch (e) {
+      startTransition(() => {
+        setMyGraphQLSchema(undefined);
+      });
     }
   }, []);
 
