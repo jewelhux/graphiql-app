@@ -32,6 +32,14 @@ i18n.use(initReactI18next).init({
           query: 'Execute query',
           docs: 'Docs',
         },
+        errorNotification: {
+          messageIn: 'Invalid User Credentials',
+          descriptionIn:
+            "We're sorry, but the provided login credentials are invalid. Please double-check your email and password and try again. If you don't have an account, please sign up to access our services",
+          messageUp: 'Sign Up Failed',
+          descriptionUp:
+            'We regret to inform you that an error has occurred during the sign-up process',
+        },
       },
     },
     ru: {
@@ -61,6 +69,13 @@ i18n.use(initReactI18next).init({
           headers: 'Заголовки',
           query: 'Выполнить запрос',
           docs: 'Документация',
+        },
+        errorNotification: {
+          messageIn: 'Неверные учетные данные пользователя',
+          descriptionIn:
+            'К сожалению, предоставленные учетные данные для входа недействительны. Пожалуйста, еще раз проверьте свой адрес электронной почты и пароль и повторите попытку. Если у вас нет учетной записи, пожалуйста, зарегистрируйтесь, чтобы получить доступ к нашему редактору',
+          messageUp: 'Ошибка регистрации',
+          descriptionUp: 'К сожалению, при регистрации произошла ошибка',
         },
       },
     },

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useCallback } from 'react';
 import { Auth } from '@/types/enum';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Form from '@/components/Form';
@@ -7,19 +7,36 @@ import { useRouter } from 'next/router';
 import { useAppDispatch } from '../store/store';
 import { setUser } from '../store/features/userSlice';
 import { useAuth } from '@/hooks/useAuth';
-import Popup from '@/components/Popup';
+import { notification } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const SignIn: FC = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [toast, setToast] = useState('');
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { isAuth } = useAuth();
+  const [api, contextHolder] = notification.useNotification();
+  const { t } = useTranslation();
+
+  const openErrorNotification = useCallback(() => {
+    api['error']({
+      message: t('errorNotification.messageIn'),
+      description: t('errorNotification.descriptionIn'),
+    });
+  }, [api, t]);
 
   useEffect(() => {
     if (isAuth) {
       router.push('/');
     }
   }, [isAuth, router]);
+
+  useEffect(() => {
+    if (toast === 'error') {
+      openErrorNotification();
+      setToast('');
+    }
+  }, [router, toast, openErrorNotification]);
 
   const handleLogin = (data: IFormData) => {
     const auth = getAuth();
@@ -29,22 +46,12 @@ const SignIn: FC = () => {
         dispatch(setUser());
         router.push('/graphi');
       })
-      .catch(() => setShowPopup(true));
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-    router.push('/');
+      .catch(() => setToast('error'));
   };
 
   return (
     <>
-      {showPopup && (
-        <Popup
-          message="Учетные данные неверны или пользователь не существует"
-          onClose={handleClosePopup}
-        />
-      )}
+      {contextHolder}
       <Form variantAuth={Auth.signin} handleClick={handleLogin} />
     </>
   );
