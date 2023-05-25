@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Auth } from '@/types/enum';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Form from '@/components/Form';
@@ -7,8 +7,10 @@ import { useRouter } from 'next/router';
 import { useAppDispatch } from '../store/store';
 import { setUser } from '../store/features/userSlice';
 import { useAuth } from '@/hooks/useAuth';
+import Popup from '@/components/Popup';
 
 const SignIn: FC = () => {
+  const [showPopup, setShowPopup] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { isAuth } = useAuth();
@@ -27,11 +29,22 @@ const SignIn: FC = () => {
         dispatch(setUser());
         router.push('/graphi');
       })
-      .catch(() => Error('Вход не завершен, ошибка'));
+      .catch(() => setShowPopup(true));
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    router.push('/');
   };
 
   return (
     <>
+      {showPopup && (
+        <Popup
+          message="Учетные данные неверны или пользователь не существует"
+          onClose={handleClosePopup}
+        />
+      )}
       <Form variantAuth={Auth.signin} handleClick={handleLogin} />
     </>
   );
