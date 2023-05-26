@@ -8,22 +8,38 @@ import { Col, Row, Button, Space, Tooltip, Tabs } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import Loader from './Loader';
+import { RootState, useAppDispatch, useAppSelector } from '@/store/store';
+import { setQueryState } from '@/store/features/userSliceQuery';
+import { URL_GRAPH_GL } from '@/utils/const';
+import { setVariablesState } from '@/store/features/userSliceVariables';
 
-const url = 'https://rickandmortyapi.com/graphql';
 const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
 const Docs = lazy(() => import('./Docs'));
 
 function QueryEditor() {
   const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | null>(null);
   const [response, setResponse] = useState<string>('');
-  const [value, setValue] = useState(`query {}`);
-  const [variables, setVariables] = useState(`{}`);
+  const [value, setValue] = useState('');
+  const [variables, setVariables] = useState('');
   const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
   const { t } = useTranslation();
 
+  const dispatch = useAppDispatch();
+
+  const queryState = useAppSelector((state: RootState) => state.query.query);
+  const variablesState = useAppSelector((state: RootState) => state.variables.variables);
+
+  useEffect(() => {
+    setValue(queryState);
+  }, [queryState]);
+
+  useEffect(() => {
+    setVariables(variablesState);
+  }, [variablesState]);
+
   useEffect(() => {
     const fetchSchema = async () => {
-      const remoteExecutor = buildHTTPExecutor({ endpoint: url });
+      const remoteExecutor = buildHTTPExecutor({ endpoint: URL_GRAPH_GL });
 
       const postsSubschema = {
         schema: await schemaFromExecutor(remoteExecutor),
@@ -34,13 +50,21 @@ function QueryEditor() {
     fetchSchema();
   }, []);
 
-  const onChangeValue = React.useCallback((value: string) => {
-    setValue(value);
-  }, []);
+  const onChangeValue = React.useCallback(
+    (value: string) => {
+      setValue(value);
+      dispatch(setQueryState({ query: value }));
+    },
+    [dispatch]
+  );
 
-  const onChangeVariables = React.useCallback((value: string) => {
-    setVariables(value);
-  }, []);
+  const onChangeVariables = React.useCallback(
+    (value: string) => {
+      setVariables(value);
+      dispatch(setVariablesState({ variables: value }));
+    },
+    [dispatch]
+  );
 
   const makeRequest = async (query: string): Promise<string> => {
     const reguestBody = {
@@ -48,7 +72,7 @@ function QueryEditor() {
       variables: JSON.parse(variables),
     };
 
-    const res = await fetch(url, {
+    const res = await fetch(URL_GRAPH_GL, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

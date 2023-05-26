@@ -50,7 +50,7 @@ main footer {
     @media (max-width: #{$mq-medium}) {
         padding-left: 0;
     }
-    @media (min-width: 10rem) {
+    @media (min-width: 70rem) {
         padding-left: 21rem;
     }
 }
@@ -86,7 +86,7 @@ main code.highlight {
     padding: $spacing-xxx-small;
     padding-top: $spacing-large;
     border-radius: $border-radius-medium;
-    min-width: 10rem;
+    min-width: 50rem;
 }
 
 main code.highlight::after,

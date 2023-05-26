@@ -1,10 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import userReducer from './features/userSlice';
+import userReducerAuth, { userSliceAuth } from './features/userSliceAuth';
+import userReducerQuery, { userSliceQuery } from './features/userSliceQuery';
+import userReducerVariables, { userSliceVariables } from './features/userSliceVariables';
 
 export const store = configureStore({
   reducer: {
-    auth: userReducer,
+    [userSliceAuth.name]: userReducerAuth,
+    [userSliceQuery.name]: userReducerQuery,
+    [userSliceVariables.name]: userReducerVariables,
   },
 });
 

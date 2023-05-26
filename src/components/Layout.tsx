@@ -7,7 +7,7 @@ import { Layout as AntLayout, Row, Col } from 'antd';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch } from '@/store/store';
 import { useAuth } from '@/hooks/useAuth';
-import { setUser } from '@/store/features/userSlice';
+import { setUser } from '@/store/features/userSliceAuth';
 
 const { Content } = AntLayout;
 
