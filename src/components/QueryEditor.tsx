@@ -18,7 +18,7 @@ function QueryEditor() {
   const [response, setResponse] = useState<string>('');
   const [value, setValue] = useState(`query {}`);
   const [variables, setVariables] = useState(`{}`);
-  const [isDocsVisible, setIsDocsVisible] = useState<boolean>(true);
+  const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
   const { t } = useTranslation();
 
   useEffect(() => {

@@ -42,7 +42,7 @@ const Header: FC = () => {
 
   return (
     <AntHeader className={`header ${isScrolled ? 'scrolled' : 'unscrolled'}`}>
-      <Row justify="space-between" align="middle">
+      <Row className="header-row" align="middle">
         <Col>
           <Title
             level={1}
