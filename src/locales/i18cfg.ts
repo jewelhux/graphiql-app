@@ -8,6 +8,7 @@ i18n.use(initReactI18next).init({
       translation: {
         welcome: {
           title: 'Welcome to GraphiQL',
+          redirect: 'Go to editor',
         },
         auth: {
           signIn: 'Sign In',
@@ -46,6 +47,7 @@ i18n.use(initReactI18next).init({
       translation: {
         welcome: {
           title: 'Добро пожаловать в GraphiQL',
+          redirect: 'Перейти в редактор',
         },
         auth: {
           signIn: 'Вход',
