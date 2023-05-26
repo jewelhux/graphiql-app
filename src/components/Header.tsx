@@ -1,11 +1,13 @@
 'use client';
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Typography, Button, Layout, Row, Col, Space } from 'antd';
+import { Typography, Button, Layout, Row, Col, Space, Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { getAuth } from 'firebase/auth';
 import Language from './Language';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/store';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
@@ -15,7 +17,9 @@ const Header: FC = () => {
   const { isAuth } = useAuth();
   const auth = getAuth();
   const { t } = useTranslation();
-
+  const { pathname } = useRouter();
+  const isOnEditor = pathname === '/graphi';
+  const { userEmail } = useAppSelector((state) => state.auth);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const userLogOut = async () => {
@@ -59,9 +63,34 @@ const Header: FC = () => {
         </Col>
         <Col style={{ marginRight: '10px' }}>
           {isAuth ? (
-            <Button type="default" onClick={() => userLogOut()}>
-              {t('auth.logout')}
-            </Button>
+            <Space>
+              {isOnEditor ? (
+                <>
+                  <Avatar
+                    style={{ verticalAlign: 'middle', backgroundColor: '#1677ff' }}
+                    size="large"
+                  >
+                    {userEmail?.slice(0, 1).toUpperCase() || <UserOutlined />}
+                  </Avatar>
+                  <Title className="user-email" level={5}>
+                    {userEmail}
+                  </Title>
+                </>
+              ) : (
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    push('/graphi');
+                  }}
+                >
+                  {t('auth.redirect')}
+                </Button>
+              )}
+
+              <Button type="default" onClick={() => userLogOut()}>
+                {t('auth.logout')}
+              </Button>
+            </Space>
           ) : (
             <Space>
               <Button

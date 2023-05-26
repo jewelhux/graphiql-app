@@ -68,9 +68,16 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-.title:hover {
+.title:hover, .user-email:hover {
   transform: scale(1.03);
   text-shadow: 0px 3px 5px var(--primary);
+}
+
+
+.user-email {
+  cursor: default;
+  color: var(--light) !important;
+  transition: 0.3s ease-in-out;
 }
 
 /* Form styles */
@@ -695,6 +702,10 @@ a {
 
 /* Media */
 @media (max-width: 535px) {
+  .title {
+    margin-bottom: 0 !important;
+  }
+
   .header-row, .footer-row {
     justify-content: center;
   }
