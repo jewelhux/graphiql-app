@@ -9,7 +9,7 @@ import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import Loader from './Loader';
 
-const url = 'https://rickandmortyapi.com/graphql';
+const url = 'https://spacex-production.up.railway.app/';
 const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
 const Docs = lazy(() => import('./Docs'));
 
