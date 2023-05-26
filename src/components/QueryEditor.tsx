@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
 import { buildHTTPExecutor } from '@graphql-tools/executor-http';
@@ -7,16 +7,18 @@ import { GraphQLSchema } from 'graphql/type';
 import { Col, Row, Button, Space, Tooltip, Tabs } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import Loader from './Loader';
 
 const url = 'https://rickandmortyapi.com/graphql';
 const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
+const Docs = lazy(() => import('./Docs'));
 
 function QueryEditor() {
   const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | null>(null);
   const [response, setResponse] = useState<string>('');
   const [value, setValue] = useState(`query {}`);
   const [variables, setVariables] = useState(`{}`);
-  const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
+  const [isDocsVisible, setIsDocsVisible] = useState<boolean>(true);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -124,12 +126,9 @@ function QueryEditor() {
 
             <Row gutter={24} style={{ width: 'calc(100% - 60px)' }}>
               <Col span={isDocsVisible ? 8 : 0}>
-                <iframe
-                  className={isDocsVisible ? 'docs-visible' : 'docs-hidden'}
-                  style={{ width: '100%', height: '600px' }}
-                  src="/docs/index.html"
-                  title="GraphQL documentation"
-                ></iframe>
+                <Suspense fallback={<Loader />}>
+                  <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
+                </Suspense>
               </Col>
               <Col span={isDocsVisible ? 8 : 12}>
                 <CodeMirror
@@ -152,7 +151,7 @@ function QueryEditor() {
           </Row>
         </>
       ) : (
-        <div>Loading</div>
+        <Loader />
       )}
     </>
   );

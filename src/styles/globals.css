@@ -679,3 +679,10 @@ a {
   font-family: 'Ubuntu Mono';
   font-size: 15px;
 }
+
+.spin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+}
