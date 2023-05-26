@@ -124,13 +124,13 @@ function QueryEditor() {
               </Space>
             </Col>
 
-            <Row gutter={24} style={{ width: 'calc(100% - 60px)' }}>
-              <Col span={isDocsVisible ? 8 : 0}>
+            <Row gutter={[24, 24]} style={{ width: 'calc(100% - 60px)' }}>
+              <Col md={isDocsVisible ? 8 : 0} xs={24}>
                 <Suspense fallback={<Loader />}>
                   <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
                 </Suspense>
               </Col>
-              <Col span={isDocsVisible ? 8 : 12}>
+              <Col md={isDocsVisible ? 8 : 12} xs={24}>
                 <CodeMirror
                   value={value}
                   height="200px"
@@ -141,7 +141,7 @@ function QueryEditor() {
                 <Tabs centered items={tabsItems} />
               </Col>
 
-              <Col span={isDocsVisible ? 8 : 12}>
+              <Col md={isDocsVisible ? 8 : 12} xs={24}>
                 <CodeMirror
                   value={response ? JSON.stringify(response, null, 2) : ''}
                   readOnly={true}
