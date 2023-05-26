@@ -66,10 +66,7 @@ const Header: FC = () => {
             <Space>
               {isOnEditor ? (
                 <>
-                  <Avatar
-                    style={{ verticalAlign: 'middle', backgroundColor: '#1677ff' }}
-                    size="large"
-                  >
+                  <Avatar className="header-avatar" size="large">
                     {userEmail?.slice(0, 1).toUpperCase() || <UserOutlined />}
                   </Avatar>
                   <Title className="user-email" level={5}>

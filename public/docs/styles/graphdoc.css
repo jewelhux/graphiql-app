@@ -4532,7 +4532,7 @@ nav {
 @media (max-width: 768px) {
   nav {
     transform: translateX(-100%);
-    width: 20rem
+    width: 17rem
   }
   nav.is-active {
     transform: translateX(0)
@@ -4564,7 +4564,7 @@ main .title, main footer {
   padding-bottom: 3rem
 }
 main .title {
-  background: #005fb2
+  background: #001529;
 }
 main .title .slds-text-title--caps, main .title .slds-button {
   color: inherit

@@ -124,9 +124,9 @@ function QueryEditor() {
     <>
       {myGraphQLSchema ? (
         <>
-          <Row gutter={24} style={{ marginBottom: '10px' }}>
+          <Row gutter={24} className="editor-line">
             <Col>
-              <Space direction="vertical">
+              <Space className="editor-controls">
                 <Row>
                   <Tooltip title={t('graphiql.query') || 'Execute query'}>
                     <Button
@@ -148,13 +148,13 @@ function QueryEditor() {
               </Space>
             </Col>
 
-            <Row gutter={[24, 24]} style={{ width: 'calc(100% - 60px)' }}>
-              <Col md={isDocsVisible ? 8 : 0} xs={24}>
+            <Row gutter={[24, 24]} className="editor-layout">
+              <Col lg={isDocsVisible ? 8 : 0} xs={24}>
                 <Suspense fallback={<Loader />}>
                   <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
                 </Suspense>
               </Col>
-              <Col md={isDocsVisible ? 8 : 12} xs={24}>
+              <Col lg={isDocsVisible ? 8 : 12} xs={24}>
                 <CodeMirror
                   value={value}
                   height="200px"
@@ -165,7 +165,7 @@ function QueryEditor() {
                 <Tabs centered items={tabsItems} />
               </Col>
 
-              <Col md={isDocsVisible ? 8 : 12} xs={24}>
+              <Col lg={isDocsVisible ? 8 : 12} xs={24}>
                 <CodeMirror
                   value={response ? JSON.stringify(response, null, 2) : ''}
                   readOnly={true}

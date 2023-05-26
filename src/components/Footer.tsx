@@ -6,7 +6,7 @@ const { Footer: AntFooter } = Layout;
 function Footer(): ReactElement {
   return (
     <AntFooter className="footer">
-      <Row className="footer-row" align={'middle'} style={{ minHeight: '55px' }}>
+      <Row className="footer-row" align={'middle'}>
         <Col>
           <Button type="link" href="https://github.com/Jik789" className="btn">
             <Space>
