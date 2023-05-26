@@ -694,17 +694,17 @@ a {
 }
 
 /* Media */
-@media (max-width: 570px) {
+@media (max-width: 535px) {
   .header-row, .footer-row {
     justify-content: center;
   }
 
   .scrolled {
-    height: 200px;
+    height: 135px;
   }
 
   .unscrolled {
-    height: 215px;
+    height: 150px;
   }
 
 
@@ -717,5 +717,15 @@ a {
   .form {
     min-width: 300px;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 350px) {
+  .scrolled {
+    height: 200px;
+  }
+
+  .unscrolled {
+    height: 215px;
   }
 }
