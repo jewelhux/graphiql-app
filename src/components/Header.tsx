@@ -43,7 +43,7 @@ const Header: FC = () => {
   return (
     <AntHeader className={`header ${isScrolled ? 'scrolled' : 'unscrolled'}`}>
       <Row className="header-row" align="middle">
-        <Col>
+        <Col style={{ marginRight: '10px' }}>
           <Title
             level={1}
             className="title"
@@ -54,10 +54,10 @@ const Header: FC = () => {
             GrafiQL
           </Title>
         </Col>
-        <Col>
+        <Col style={{ marginRight: '10px' }}>
           <Language />
         </Col>
-        <Col>
+        <Col style={{ marginRight: '10px' }}>
           {isAuth ? (
             <Button type="default" onClick={() => userLogOut()}>
               {t('auth.logout')}

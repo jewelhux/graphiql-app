@@ -694,7 +694,7 @@ a {
 }
 
 /* Media */
-@media (max-width: 515px) {
+@media (max-width: 570px) {
   .header-row, .footer-row {
     justify-content: center;
   }
@@ -712,5 +712,10 @@ a {
     height: 300px;
     width: 300px;
     overflow: hidden;
+  }
+
+  .form {
+    min-width: 300px;
+    max-width: 300px;
   }
 }
