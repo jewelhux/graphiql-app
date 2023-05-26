@@ -67,7 +67,7 @@ function QueryEditor() {
   );
 
   const makeRequest = async (query: string): Promise<string> => {
-    const reguestBody = {
+    const requestBody = {
       query,
       variables: JSON.parse(variables),
     };
@@ -77,7 +77,7 @@ function QueryEditor() {
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(reguestBody),
+      body: JSON.stringify(requestBody),
     });
     return await res.json();
   };
