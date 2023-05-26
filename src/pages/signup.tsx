@@ -1,7 +1,5 @@
 import { FC, useEffect, useState, useCallback } from 'react';
 import { Auth } from '@/types/enum';
-import { useAppDispatch } from '@/store/store';
-import { setUser } from '@/store/features/userSlice';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import Form from '@/components/Form';
 import { IFormData } from '@/types/interface';
@@ -12,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 
 const SignUp: FC = () => {
   const [toast, setToast] = useState('');
-  const dispatch = useAppDispatch();
   const router = useRouter();
   const { isAuth } = useAuth();
   const [api, contextHolder] = notification.useNotification();
@@ -43,7 +40,6 @@ const SignUp: FC = () => {
 
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(async () => {
-        dispatch(setUser());
         router.push('/graphi');
       })
       .catch(() => setToast('error'));

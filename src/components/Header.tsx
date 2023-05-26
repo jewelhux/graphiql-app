@@ -12,31 +12,14 @@ const { Title } = Typography;
 
 const Header: FC = () => {
   const { push } = useRouter();
-  const [localAuth, setLocalAuth] = useState(false);
   const { isAuth } = useAuth();
   const auth = getAuth();
   const { t } = useTranslation();
-
-  useEffect(
-    () =>
-      setLocalAuth(
-        window.localStorage.isAuth ? JSON.parse(window.localStorage.isAuth).auth : false
-      ),
-    [isAuth]
-  );
-  useEffect(
-    () =>
-      setLocalAuth(
-        window.localStorage.isAuth ? JSON.parse(window.localStorage.isAuth).auth : false
-      ),
-    []
-  );
 
   const [isScrolled, setIsScrolled] = useState(false);
 
   const userLogOut = async () => {
     await auth.signOut();
-    setLocalAuth(false);
     push('/');
   };
 
@@ -75,7 +58,7 @@ const Header: FC = () => {
           <Language />
         </Col>
         <Col>
-          {localAuth ? (
+          {isAuth ? (
             <Button type="default" onClick={() => userLogOut()}>
               {t('auth.logout')}
             </Button>

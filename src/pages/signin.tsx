@@ -4,15 +4,12 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Form from '@/components/Form';
 import { IFormData } from '@/types/interface';
 import { useRouter } from 'next/router';
-import { useAppDispatch } from '../store/store';
-import { setUser } from '../store/features/userSlice';
 import { useAuth } from '@/hooks/useAuth';
 import { notification } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 const SignIn: FC = () => {
   const [toast, setToast] = useState('');
-  const dispatch = useAppDispatch();
   const router = useRouter();
   const { isAuth } = useAuth();
   const [api, contextHolder] = notification.useNotification();
@@ -43,7 +40,6 @@ const SignIn: FC = () => {
 
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(async () => {
-        dispatch(setUser());
         router.push('/graphi');
       })
       .catch(() => setToast('error'));

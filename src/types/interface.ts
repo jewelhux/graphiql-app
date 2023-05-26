@@ -1,5 +1,6 @@
 interface IUserSlice {
-  auth: boolean | null;
+  isAuth: boolean;
+  userEmail: string | undefined | null;
 }
 
 interface IFormData {
