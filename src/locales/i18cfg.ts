@@ -50,6 +50,9 @@ i18n.use(initReactI18next).init({
           query: 'Execute query',
           docs: 'Docs',
         },
+        loader: {
+          loader: 'Loading...',
+        },
         errorNotification: {
           messageNotFound: 'User not found',
           descriptionNotFound:
@@ -108,6 +111,9 @@ i18n.use(initReactI18next).init({
           headers: 'Заголовки',
           query: 'Выполнить запрос',
           docs: 'Документация',
+        },
+        loader: {
+          loader: 'Загрузка...',
         },
         errorNotification: {
           messageNotFound: 'Пользователь не найден',
