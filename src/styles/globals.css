@@ -114,23 +114,28 @@ a {
   text-align: center;
   position: relative;
   animation-name: appearance;
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-fill-mode: forwards;
   transition: 0.3s ease-in-out;
   user-select: none;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #welcome:hover {
   text-shadow: 0px 3px 5px var(--primary);
 }
 
+.welcome-desc {
+  text-align: center;
+  max-width: 80%;
+}
+
 @keyframes appearance {
   0% {
-    left: -1000px;
+    top: -1000px;
   }
   100% {
-    left: 0px;
+    top: 0px;
   }
 }
 
@@ -719,7 +724,7 @@ a {
 }
 
 /* Media */
-@media (max-width: 580px) {
+@media (max-width: 700px) {
   .title {
     margin-bottom: 0 !important;
   }
@@ -771,4 +776,28 @@ a {
   .editor-line {
     justify-content: center;
   }
+}
+
+.dev-cards > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 13rem;
+}
+
+.dev-cards-avatar {
+  transition: 0.3s ease-in-out;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.dev-cards-avatar:hover {
+  box-shadow: 0px 0px 10px var(--primary);
+}
+
+.dev-description {
+  white-space: pre-line;
+  margin: 10px 0;
 }
