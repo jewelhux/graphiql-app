@@ -39,16 +39,21 @@ function QueryEditor() {
   }, [variablesState]);
 
   useEffect(() => {
-    const fetchSchema = async () => {
-      const remoteExecutor = buildHTTPExecutor({ endpoint: URL_GRAPH_GL });
+    try {
+      setErr(false);
+      const fetchSchema = async () => {
+        const remoteExecutor = buildHTTPExecutor({ endpoint: URL_GRAPH_GL });
 
-      const postsSubschema = {
-        schema: await schemaFromExecutor(remoteExecutor),
-        executor: remoteExecutor,
+        const postsSubschema = {
+          schema: await schemaFromExecutor(remoteExecutor),
+          executor: remoteExecutor,
+        };
+        setMyGraphQLSchema(postsSubschema.schema);
       };
-      setMyGraphQLSchema(postsSubschema.schema);
-    };
-    fetchSchema();
+      fetchSchema();
+    } catch (error) {
+      setErr(true);
+    }
   }, []);
 
   const onChangeValue = React.useCallback(
@@ -161,7 +166,17 @@ function QueryEditor() {
               <Col lg={isDocsVisible ? 8 : 0} xs={24}>
                 <Suspense fallback={<Loader />}>
                   {err ? (
-                    <p>Sorry server return Error Doc</p>
+                    <p>
+                      {t('graphiql.errorDocs')}
+                      <a
+                        href={URL_GRAPH_GL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ fontStyle: 'italic', color: 'gray' }}
+                      >
+                        spacex-production
+                      </a>
+                    </p>
                   ) : (
                     <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
                   )}
