@@ -5,8 +5,7 @@ import Footer from './Footer';
 import Header from './Header';
 import { Layout as AntLayout, Row, Col } from 'antd';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useAppDispatch } from '@/store/store';
-import { useAuth } from '@/hooks/useAuth';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setUser } from '@/store/features/userSliceAuth';
 
 const { Content } = AntLayout;
@@ -17,7 +16,7 @@ interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   const router = useRouter();
-  const { isAuth } = useAuth();
+  const { isAuth } = useAppSelector((state) => state.auth);
   const auth = getAuth();
   const dispatch = useAppDispatch();
   const [authTouched, setAuthTouched] = useState(false);
@@ -27,7 +26,6 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
   useEffect(() => {
     const AUTH_PATH = ['/signin', '/signup'];
     if (!authTouched) return;
-
     if (isAuth) {
       if (AUTH_PATH.includes(router.asPath)) {
         router.replace('/graphi');

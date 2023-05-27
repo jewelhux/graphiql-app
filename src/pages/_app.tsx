@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import i18n from '../locales/i18cfg';
 import { I18nextProvider } from 'react-i18next';
 import { store } from '../store/store';
-import '../firebase';
+import '../firebaseConfig';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

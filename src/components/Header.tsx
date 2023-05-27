@@ -3,29 +3,22 @@ import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Button, Layout, Row, Col, Space, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { useAuth } from '@/hooks/useAuth';
-import { getAuth } from 'firebase/auth';
 import Language from './Language';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/store/store';
+import { logOut } from '@/firebase';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
 
 const Header: FC = () => {
   const { push } = useRouter();
-  const { isAuth } = useAuth();
-  const auth = getAuth();
+  const { isAuth } = useAppSelector((state) => state.auth);
   const { t } = useTranslation();
   const { pathname } = useRouter();
   const isOnEditor = pathname === '/graphi';
   const { userEmail } = useAppSelector((state) => state.auth);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const userLogOut = async () => {
-    await auth.signOut();
-    push('/');
-  };
 
   useEffect(() => {
     const next = document.getElementById('__next');
@@ -84,7 +77,7 @@ const Header: FC = () => {
                 </Button>
               )}
 
-              <Button type="default" onClick={() => userLogOut()}>
+              <Button type="default" onClick={async () => await logOut()}>
                 {t('auth.logout')}
               </Button>
             </Space>
