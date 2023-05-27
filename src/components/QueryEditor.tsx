@@ -19,6 +19,7 @@ const Docs = lazy(() => import('./Docs'));
 function QueryEditor() {
   const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | null>(null);
   const [response, setResponse] = useState<string>('');
+  const [err, setErr] = useState<boolean>(false);
   const [value, setValue] = useState('');
   const [variables, setVariables] = useState('');
   const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
@@ -79,7 +80,15 @@ function QueryEditor() {
       },
       body: JSON.stringify(requestBody),
     });
-    return await res.json();
+
+    const data = await res.json();
+    if (data.errors) {
+      setErr(true);
+    } else {
+      setErr(false);
+    }
+
+    return data;
   };
 
   const handleDocsClick = () => {
@@ -151,7 +160,11 @@ function QueryEditor() {
             <Row gutter={[24, 24]} className="editor-layout">
               <Col lg={isDocsVisible ? 8 : 0} xs={24}>
                 <Suspense fallback={<Loader />}>
-                  <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
+                  {err ? (
+                    <p>Sorry server return Error Doc</p>
+                  ) : (
+                    <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
+                  )}
                 </Suspense>
               </Col>
               <Col lg={isDocsVisible ? 8 : 12} xs={24}>
