@@ -41,10 +41,6 @@ const Form: FC<IFormProps> = ({ type }) => {
     const { error } = await signInOrSignUp(data.email, data.password);
     if (error) {
       const { message, description } = getMessageAndDescription(error.code);
-      setTimeout(() => {
-        push('/');
-      }, 2500);
-
       openErrorNotification(message, description);
     }
   };
