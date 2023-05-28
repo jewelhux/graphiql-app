@@ -50,7 +50,8 @@ i18n.use(initReactI18next).init({
           query: 'Execute query',
           docs: 'Docs',
           errorDocs:
-            "We're sorry, but according to the technical specification, the working documentation explorer should only be visible when the SDL request succeeds.For viewing the official documentation, you can follow the link...",
+            "We're sorry, but according to the technical specification, the working documentation explorer should only be visible when the SDL request succeeds. For viewing the official documentation, you can follow the ",
+          link: 'link',
         },
         loader: {
           loader: 'Loading...',
@@ -114,7 +115,8 @@ i18n.use(initReactI18next).init({
           query: 'Выполнить запрос',
           docs: 'Документация',
           errorDocs:
-            'Извините, но согласно техническому заданию рабочая документация должна быть видима только при успешном выполнении запроса SDL. Для просмотра официальной документации вы можете перейти по ссылке...',
+            'Извините, но согласно техническому заданию рабочая документация должна быть видима только при успешном выполнении запроса SDL. Для просмотра официальной документации вы можете перейти по ',
+          link: 'ссылке',
         },
         loader: {
           loader: 'Загрузка...',

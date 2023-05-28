@@ -4,7 +4,7 @@ import { graphql } from 'cm6-graphql';
 import { buildHTTPExecutor } from '@graphql-tools/executor-http';
 import { schemaFromExecutor } from '@graphql-tools/wrap';
 import { GraphQLSchema } from 'graphql/type';
-import { Col, Row, Button, Space, Tooltip, Tabs } from 'antd';
+import { Col, Row, Button, Space, Tooltip, Tabs, Typography } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import Loader from './Loader';
@@ -24,7 +24,7 @@ function QueryEditor() {
   const [variables, setVariables] = useState('');
   const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
   const { t } = useTranslation();
-
+  const { Title } = Typography;
   const dispatch = useAppDispatch();
 
   const queryState = useAppSelector((state: RootState) => state.query.query);
@@ -166,17 +166,18 @@ function QueryEditor() {
               <Col lg={isDocsVisible ? 8 : 0} xs={24}>
                 <Suspense fallback={<Loader />}>
                   {err ? (
-                    <p>
+                    <Title level={5}>
                       {t('graphiql.errorDocs')}
-                      <a
+                      <Button
+                        type="link"
                         href={URL_GRAPH_GL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ fontStyle: 'italic', color: 'gray' }}
+                        style={{ padding: 0 }}
                       >
-                        spacex-production
-                      </a>
-                    </p>
+                        {t('graphiql.link')}
+                      </Button>
+                    </Title>
                   ) : (
                     <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
                   )}
