@@ -1,5 +1,5 @@
 interface IUserSlice {
-  isAuth: boolean;
+  isAuth: boolean | undefined;
   userEmail: string | undefined | null;
 }
 

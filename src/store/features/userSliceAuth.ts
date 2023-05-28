@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUserSlice } from '../../types/interface';
 
 const initialState: IUserSlice = {
-  isAuth: false,
+  isAuth: undefined,
   userEmail: undefined,
 };
 

@@ -17,6 +17,8 @@ import { LockOutlined, UserAddOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { signIn, signUp } from '@/firebase';
 import getMessageAndDescription from '@/utils/getMessageAndDescription';
+import { useAppSelector } from '@/store/store';
+import Loader from './Loader';
 
 const { Title } = Typography;
 
@@ -28,6 +30,7 @@ const Form: FC<IFormProps> = ({ type }) => {
   const { push } = useRouter();
   const { t } = useTranslation();
   const [api, contextHolder] = notification.useNotification();
+  const { isAuth } = useAppSelector((state) => state.auth);
 
   const openErrorNotification = (message: string, description: string) => {
     api['error']({
@@ -52,7 +55,9 @@ const Form: FC<IFormProps> = ({ type }) => {
   const formTitle = type === 'signin' ? 'form.titleIn' : 'form.titleUp';
   const btnTitle = type === 'signin' ? 'form.buttonIn' : 'form.buttonUp';
 
-  return (
+  return isAuth ? (
+    <Loader />
+  ) : (
     <>
       {contextHolder}
       <Row justify="center" align="middle" style={{ height: 'calc(100vh - 200px)' }}>

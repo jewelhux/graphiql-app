@@ -7,6 +7,7 @@ import { Layout as AntLayout, Row, Col } from 'antd';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setUser } from '@/store/features/userSliceAuth';
+import Loader from './Loader';
 
 const { Content } = AntLayout;
 
@@ -58,7 +59,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
         <AntLayout className="center top">
           <Content style={fullWidthStyle}>
             <Row justify="center" gutter={[16, 24]}>
-              <Col span={24}>{children}</Col>
+              <Col span={24}>{isAuth !== undefined ? children : <Loader />}</Col>
             </Row>
           </Content>
         </AntLayout>
