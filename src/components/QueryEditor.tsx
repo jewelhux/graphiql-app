@@ -87,11 +87,6 @@ function QueryEditor() {
     });
 
     const data = await res.json();
-    if (data.errors) {
-      setErr(true);
-    } else {
-      setErr(false);
-    }
 
     return data;
   };
