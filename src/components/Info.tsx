@@ -14,7 +14,13 @@ const Info: FC = () => {
       </Row>
       <Row justify="center" style={{ marginBottom: '30px' }} gutter={24}>
         <Col>
-          <Button type="link" href="https://github.com/Jik789" className="btn">
+          <Button
+            type="link"
+            href="https://github.com/Jik789"
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Card hoverable className="dev-cards">
               <Avatar
                 className="dev-cards-avatar"
@@ -27,7 +33,13 @@ const Info: FC = () => {
           </Button>
         </Col>
         <Col>
-          <Button type="link" href="https://github.com/okitel" className="btn">
+          <Button
+            type="link"
+            href="https://github.com/okitel"
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Card hoverable className="dev-cards">
               <Avatar
                 className="dev-cards-avatar"
@@ -40,7 +52,13 @@ const Info: FC = () => {
           </Button>
         </Col>
         <Col>
-          <Button type="link" href="https://github.com/Syderi" className="btn">
+          <Button
+            type="link"
+            href="https://github.com/Syderi"
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Card hoverable className="dev-cards">
               <Avatar
                 className="dev-cards-avatar"
@@ -69,7 +87,13 @@ const Info: FC = () => {
             />
             <Meta title={t('info.courseTitle')} />
             <Paragraph className="dev-description">{t('info.courseDes')}</Paragraph>
-            <Button type="default" href="https://rs.school/react/" className="btn">
+            <Button
+              type="default"
+              href="https://rs.school/react/"
+              className="btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {t('info.enrollBtn')}
             </Button>
           </Card>

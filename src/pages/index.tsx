@@ -25,6 +25,8 @@ const Auth = () => {
             type="link"
             href="https://spacex-production.up.railway.app/"
             style={{ padding: 0, lineHeight: '24px' }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             SpaceX.
           </Button>

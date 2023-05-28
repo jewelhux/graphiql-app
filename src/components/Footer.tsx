@@ -9,7 +9,13 @@ function Footer(): ReactElement {
     <AntFooter className="footer">
       <Row className="footer-row" align={'middle'}>
         <Col>
-          <Button type="link" href="https://github.com/Jik789" className="btn">
+          <Button
+            type="link"
+            href="https://github.com/Jik789"
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Space>
               <Image
                 width={40}
@@ -21,7 +27,13 @@ function Footer(): ReactElement {
             </Space>
           </Button>
 
-          <Button type="link" href="https://github.com/okitel" className="btn">
+          <Button
+            type="link"
+            href="https://github.com/okitel"
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               width={40}
               height={40}
@@ -31,7 +43,13 @@ function Footer(): ReactElement {
             />
           </Button>
 
-          <Button type="link" href="https://github.com/Syderi" className="btn">
+          <Button
+            type="link"
+            href="https://github.com/Syderi"
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               width={40}
               height={40}
@@ -42,7 +60,13 @@ function Footer(): ReactElement {
           </Button>
         </Col>
         <Col>
-          <Button type="link" href="https://rs.school/react/" className="rss">
+          <Button
+            type="link"
+            href="https://rs.school/react/"
+            className="rss"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className="rss-year">&apos;23</span>
           </Button>
         </Col>
