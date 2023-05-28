@@ -182,7 +182,7 @@ function QueryEditor() {
                   {t('graphiql.errorDocs')}
                   <Button
                     type="link"
-                    href={URL_GRAPH_GL}
+                    href="https://spacex-production.up.railway.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ padding: 0 }}

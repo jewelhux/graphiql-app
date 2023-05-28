@@ -8,7 +8,10 @@ i18n.use(initReactI18next).init({
       translation: {
         welcome: {
           title: 'Welcome to GraphiQL',
-          desc: 'This application that serves as a captivating playground for GraphQL requests, allowing users to immerse themselves in the fascinating realm of SpaceX. Discover the wonders of space exploration, access mission details, rocket specifications, and launch histories with ease, all within an intuitive interface designed to bring the cosmos closer to your fingertips',
+          desc1:
+            'This application that serves as a captivating playground for GraphQL requests, allowing users to immerse themselves in the fascinating realm of ',
+          desc2:
+            'Discover the wonders of space exploration, access mission details, rocket specifications, and launch histories with ease, all within an intuitive interface designed to bring the cosmos closer to your fingertips',
         },
         info: {
           devTitle: 'Developers',
@@ -76,7 +79,10 @@ i18n.use(initReactI18next).init({
       translation: {
         welcome: {
           title: 'Добро пожаловать в GraphiQL',
-          desc: 'Приложение, которое является захватывающей площадкой для выполнения GraphQL-запросов, позволяющих пользователям окунуться в увлекательный мир SpaceX. Откройте для себя чудеса космического исследования, получите доступ к деталям миссий, спецификациям ракет и истории запусков! Всё это в интуитивно понятном интерфейсе, что делает исследование космоса доступным для всех',
+          desc1:
+            'Приложение, которое является захватывающей площадкой для выполнения GraphQL-запросов, позволяющих пользователям окунуться в увлекательный мир ',
+          desc2:
+            'Откройте для себя чудеса космического исследования, получите доступ к деталям миссий, спецификациям ракет и истории запусков! Всё это в интуитивно понятном интерфейсе, что делает исследование космоса доступным для всех',
         },
         info: {
           devTitle: 'Разработчики',
