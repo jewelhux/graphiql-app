@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
+    <title>Query</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
+</head>
+<body class="slds-scrollable--y">
+    <nav class="slds-grid slds-grid--vertical slds-col--rule-right">
+        <header class="slds-p-around--medium slds-col slds-shrik slds-grow-none">
+            <button class="slds-button slds-button--icon slds-float--right js-toggle-navigation less-than-medium">
+                <i class="material-icons">close</i>
+            </button>
+                <h3 class="slds-text-heading--medium"><a href="./">GraphQL Schema</a></h3>
+            <div class="slds-p-top--small">
+                <input id="type-search" type="text" placeholder="Search a type" autofocus="" class="slds-input" />
+            </div>
+        </header>
+        <div id="navication-scroll" class="slds-scrollable--y slds-col slds-grow">
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Schema</h4>
+    <ul>
+        <li class="slds-is-active" title="Query">
+            <a href="query.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Query
+            </a>
+        </li>
+        <li  title="Mutation">
+            <a href="mutation.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Mutation
+            </a>
+        </li>
+        <li  title="Subscription">
+            <a href="subscription.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Subscription
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Scalars</h4>
+    <ul>
+        <li  title="Boolean">
+            <a href="boolean.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Boolean
+            </a>
+        </li>
+        <li  title="Date">
+            <a href="date.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Date
+            </a>
+        </li>
+        <li  title="Float">
+            <a href="float.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Float
+            </a>
+        </li>
+        <li  title="ID">
+            <a href="id.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ID
+            </a>
+        </li>
+        <li  title="Int">
+            <a href="int.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Int
+            </a>
+        </li>
+        <li  title="ObjectID">
+            <a href="objectid.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ObjectID
+            </a>
+        </li>
+        <li  title="String">
+            <a href="string.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                String
+            </a>
+        </li>
+        <li  title="timestamptz">
+            <a href="timestamptz.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                timestamptz
+            </a>
+        </li>
+        <li  title="uuid">
+            <a href="uuid.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                uuid
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Enums</h4>
+    <ul>
+        <li  title="conflict_action">
+            <a href="conflict_action.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                conflict_action
+            </a>
+        </li>
+        <li  title="order_by">
+            <a href="order_by.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                order_by
+            </a>
+        </li>
+        <li  title="users_constraint">
+            <a href="users_constraint.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_constraint
+            </a>
+        </li>
+        <li  title="users_select_column">
+            <a href="users_select_column.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_select_column
+            </a>
+        </li>
+        <li  title="users_update_column">
+            <a href="users_update_column.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_update_column
+            </a>
+        </li>
+        <li  title="__DirectiveLocation">
+            <a href="directivelocation.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __DirectiveLocation
+            </a>
+        </li>
+        <li  title="__TypeKind">
+            <a href="typekind.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __TypeKind
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
+    <ul>
+        <li  title="Address">
+            <a href="address.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Address
+            </a>
+        </li>
+        <li  title="Capsule">
+            <a href="capsule.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Capsule
+            </a>
+        </li>
+        <li  title="CapsuleMission">
+            <a href="capsulemission.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CapsuleMission
+            </a>
+        </li>
+        <li  title="Core">
+            <a href="core.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Core
+            </a>
+        </li>
+        <li  title="CoreMission">
+            <a href="coremission.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CoreMission
+            </a>
+        </li>
+        <li  title="Distance">
+            <a href="distance.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Distance
+            </a>
+        </li>
+        <li  title="Dragon">
+            <a href="dragon.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Dragon
+            </a>
+        </li>
+        <li  title="DragonHeatShield">
+            <a href="dragonheatshield.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DragonHeatShield
+            </a>
+        </li>
+        <li  title="DragonPressurizedCapsule">
+            <a href="dragonpressurizedcapsule.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DragonPressurizedCapsule
+            </a>
+        </li>
+        <li  title="DragonThrust">
+            <a href="dragonthrust.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DragonThrust
+            </a>
+        </li>
+        <li  title="DragonTrunk">
+            <a href="dragontrunk.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DragonTrunk
+            </a>
+        </li>
+        <li  title="DragonTrunkCargo">
+            <a href="dragontrunkcargo.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DragonTrunkCargo
+            </a>
+        </li>
+        <li  title="Force">
+            <a href="force.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Force
+            </a>
+        </li>
+        <li  title="HistoriesResult">
+            <a href="historiesresult.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                HistoriesResult
+            </a>
+        </li>
+        <li  title="History">
+            <a href="history.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                History
+            </a>
+        </li>
+        <li  title="Info">
+            <a href="info.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Info
+            </a>
+        </li>
+        <li  title="InfoLinks">
+            <a href="infolinks.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                InfoLinks
+            </a>
+        </li>
+        <li  title="Landpad">
+            <a href="landpad.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Landpad
+            </a>
+        </li>
+        <li  title="Launch">
+            <a href="launch.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Launch
+            </a>
+        </li>
+        <li  title="LaunchesPastResult">
+            <a href="launchespastresult.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchesPastResult
+            </a>
+        </li>
+        <li  title="LaunchLinks">
+            <a href="launchlinks.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchLinks
+            </a>
+        </li>
+        <li  title="Launchpad">
+            <a href="launchpad.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Launchpad
+            </a>
+        </li>
+        <li  title="LaunchRocket">
+            <a href="launchrocket.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchRocket
+            </a>
+        </li>
+        <li  title="LaunchRocketFairings">
+            <a href="launchrocketfairings.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchRocketFairings
+            </a>
+        </li>
+        <li  title="LaunchRocketFirstStage">
+            <a href="launchrocketfirststage.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchRocketFirstStage
+            </a>
+        </li>
+        <li  title="LaunchRocketFirstStageCore">
+            <a href="launchrocketfirststagecore.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchRocketFirstStageCore
+            </a>
+        </li>
+        <li  title="LaunchRocketSecondStage">
+            <a href="launchrocketsecondstage.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchRocketSecondStage
+            </a>
+        </li>
+        <li  title="LaunchSite">
+            <a href="launchsite.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchSite
+            </a>
+        </li>
+        <li  title="LaunchTelemetry">
+            <a href="launchtelemetry.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchTelemetry
+            </a>
+        </li>
+        <li  title="Link">
+            <a href="link.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Link
+            </a>
+        </li>
+        <li  title="Location">
+            <a href="location.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Location
+            </a>
+        </li>
+        <li  title="Mass">
+            <a href="mass.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Mass
+            </a>
+        </li>
+        <li  title="Mission">
+            <a href="mission.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Mission
+            </a>
+        </li>
+        <li  title="MissionResult">
+            <a href="missionresult.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                MissionResult
+            </a>
+        </li>
+        <li  title="Payload">
+            <a href="payload.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Payload
+            </a>
+        </li>
+        <li  title="PayloadOrbitParams">
+            <a href="payloadorbitparams.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PayloadOrbitParams
+            </a>
+        </li>
+        <li  title="Result">
+            <a href="result.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Result
+            </a>
+        </li>
+        <li  title="Roadster">
+            <a href="roadster.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Roadster
+            </a>
+        </li>
+        <li  title="Rocket">
+            <a href="rocket.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Rocket
+            </a>
+        </li>
+        <li  title="RocketEngines">
+            <a href="rocketengines.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketEngines
+            </a>
+        </li>
+        <li  title="RocketFirstStage">
+            <a href="rocketfirststage.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketFirstStage
+            </a>
+        </li>
+        <li  title="RocketLandingLegs">
+            <a href="rocketlandinglegs.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketLandingLegs
+            </a>
+        </li>
+        <li  title="RocketPayloadWeight">
+            <a href="rocketpayloadweight.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketPayloadWeight
+            </a>
+        </li>
+        <li  title="RocketSecondStage">
+            <a href="rocketsecondstage.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketSecondStage
+            </a>
+        </li>
+        <li  title="RocketSecondStagePayloadCompositeFairing">
+            <a href="rocketsecondstagepayloadcompositefairing.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketSecondStagePayloadCompositeFairing
+            </a>
+        </li>
+        <li  title="RocketSecondStagePayloads">
+            <a href="rocketsecondstagepayloads.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketSecondStagePayloads
+            </a>
+        </li>
+        <li  title="RocketsResult">
+            <a href="rocketsresult.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RocketsResult
+            </a>
+        </li>
+        <li  title="Ship">
+            <a href="ship.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Ship
+            </a>
+        </li>
+        <li  title="ShipLocation">
+            <a href="shiplocation.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ShipLocation
+            </a>
+        </li>
+        <li  title="ShipMission">
+            <a href="shipmission.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ShipMission
+            </a>
+        </li>
+        <li  title="ShipsResult">
+            <a href="shipsresult.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ShipsResult
+            </a>
+        </li>
+        <li  title="users">
+            <a href="users.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users
+            </a>
+        </li>
+        <li  title="users_aggregate">
+            <a href="users_aggregate.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_aggregate
+            </a>
+        </li>
+        <li  title="users_aggregate_fields">
+            <a href="users_aggregate_fields.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_aggregate_fields
+            </a>
+        </li>
+        <li  title="users_max_fields">
+            <a href="users_max_fields.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_max_fields
+            </a>
+        </li>
+        <li  title="users_min_fields">
+            <a href="users_min_fields.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_min_fields
+            </a>
+        </li>
+        <li  title="users_mutation_response">
+            <a href="users_mutation_response.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_mutation_response
+            </a>
+        </li>
+        <li  title="Volume">
+            <a href="volume.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Volume
+            </a>
+        </li>
+        <li  title="__Directive">
+            <a href="directive.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Directive
+            </a>
+        </li>
+        <li  title="__EnumValue">
+            <a href="enumvalue.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __EnumValue
+            </a>
+        </li>
+        <li  title="__Field">
+            <a href="field.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Field
+            </a>
+        </li>
+        <li  title="__InputValue">
+            <a href="inputvalue.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __InputValue
+            </a>
+        </li>
+        <li  title="__Schema">
+            <a href="schema.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Schema
+            </a>
+        </li>
+        <li  title="__Type">
+            <a href="type.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Type
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Input Objects</h4>
+    <ul>
+        <li  title="CapsulesFind">
+            <a href="capsulesfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CapsulesFind
+            </a>
+        </li>
+        <li  title="CoresFind">
+            <a href="coresfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CoresFind
+            </a>
+        </li>
+        <li  title="HistoryFind">
+            <a href="historyfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                HistoryFind
+            </a>
+        </li>
+        <li  title="LaunchFind">
+            <a href="launchfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LaunchFind
+            </a>
+        </li>
+        <li  title="MissionsFind">
+            <a href="missionsfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                MissionsFind
+            </a>
+        </li>
+        <li  title="PayloadsFind">
+            <a href="payloadsfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PayloadsFind
+            </a>
+        </li>
+        <li  title="ShipsFind">
+            <a href="shipsfind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ShipsFind
+            </a>
+        </li>
+        <li  title="String_comparison_exp">
+            <a href="string_comparison_exp.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                String_comparison_exp
+            </a>
+        </li>
+        <li  title="timestamptz_comparison_exp">
+            <a href="timestamptz_comparison_exp.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                timestamptz_comparison_exp
+            </a>
+        </li>
+        <li  title="users_aggregate_order_by">
+            <a href="users_aggregate_order_by.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_aggregate_order_by
+            </a>
+        </li>
+        <li  title="users_arr_rel_insert_input">
+            <a href="users_arr_rel_insert_input.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_arr_rel_insert_input
+            </a>
+        </li>
+        <li  title="users_bool_exp">
+            <a href="users_bool_exp.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_bool_exp
+            </a>
+        </li>
+        <li  title="users_insert_input">
+            <a href="users_insert_input.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_insert_input
+            </a>
+        </li>
+        <li  title="users_max_order_by">
+            <a href="users_max_order_by.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_max_order_by
+            </a>
+        </li>
+        <li  title="users_min_order_by">
+            <a href="users_min_order_by.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_min_order_by
+            </a>
+        </li>
+        <li  title="users_obj_rel_insert_input">
+            <a href="users_obj_rel_insert_input.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_obj_rel_insert_input
+            </a>
+        </li>
+        <li  title="users_on_conflict">
+            <a href="users_on_conflict.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_on_conflict
+            </a>
+        </li>
+        <li  title="users_order_by">
+            <a href="users_order_by.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_order_by
+            </a>
+        </li>
+        <li  title="users_set_input">
+            <a href="users_set_input.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                users_set_input
+            </a>
+        </li>
+        <li  title="uuid_comparison_exp">
+            <a href="uuid_comparison_exp.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                uuid_comparison_exp
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Directives</h4>
+    <ul>
+        <li  title="contact">
+            <a href="contact.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                contact
+            </a>
+        </li>
+        <li  title="deprecated">
+            <a href="deprecated.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                deprecated
+            </a>
+        </li>
+        <li  title="include">
+            <a href="include.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                include
+            </a>
+        </li>
+        <li  title="skip">
+            <a href="skip.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                skip
+            </a>
+        </li>
+        <li  title="specifiedBy">
+            <a href="specifiedby.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                specifiedBy
+            </a>
+        </li>
+    </ul>
+</div>
+        </div>
+    </nav>
+    <main><section class="title slds-theme--inverse">
+    <div class="container slds-grid">
+        <div>
+        <button class="slds-button js-toggle-navigation less-than-medium">
+            <i class="material-icons slds-button__icon slds-button__icon--left">menu</i>
+            <span class="slds-text-title--caps">Types<span>
+        </button>
+        </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+        <h1 class="slds-text-heading--large">Query</h1>
+        <div class="slds-text-body--regular"></div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="graphql-schema-definition" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#graphql-schema-definition">
+                <i class="material-icons">link</i>
+            </a>
+            GraphQL Schema definition
+        </h2>
+        <code class="highlight"><ul class="code" style="padding-left:56px"><li><span class="keyword operator ts">type</span> <span class="identifier">Query</span> {</li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">capsule</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="capsule.doc.html">Capsule</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">capsules</span>(<span class="meta">find</span>: <a class="support type" href="capsulesfind.doc.html">CapsulesFind</a>, <span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a>): [<a class="support type" href="capsule.doc.html">Capsule</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">capsulesPast</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="capsulesfind.doc.html">CapsulesFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): [<a class="support type" href="capsule.doc.html">Capsule</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">capsulesUpcoming</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="capsulesfind.doc.html">CapsulesFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): [<a class="support type" href="capsule.doc.html">Capsule</a>] </span></li><li></li><li><span class="tab"><span class="meta">company</span>: <a class="support type" href="info.doc.html">Info</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">core</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="core.doc.html">Core</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">cores</span>(<span class="meta">find</span>: <a class="support type" href="coresfind.doc.html">CoresFind</a>, <span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a>): [<a class="support type" href="core.doc.html">Core</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">coresPast</span>(<span class="meta">find</span>: <a class="support type" href="coresfind.doc.html">CoresFind</a>, <span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a>): [<a class="support type" href="core.doc.html">Core</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">coresUpcoming</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="coresfind.doc.html">CoresFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): [<a class="support type" href="core.doc.html">Core</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">dragon</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="dragon.doc.html">Dragon</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">dragons</span>(<span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): [<a class="support type" href="dragon.doc.html">Dragon</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">histories</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="historyfind.doc.html">HistoryFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): [<a class="support type" href="history.doc.html">History</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">historiesResult</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="historyfind.doc.html">HistoryFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): <a class="support type" href="historiesresult.doc.html">HistoriesResult</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">history</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="history.doc.html">History</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">landpad</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="landpad.doc.html">Landpad</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">landpads</span>(<span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): [<a class="support type" href="landpad.doc.html">Landpad</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launch</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="launch.doc.html">Launch</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchLatest</span>(<span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): <a class="support type" href="launch.doc.html">Launch</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchNext</span>(<span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): <a class="support type" href="launch.doc.html">Launch</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launches</span>(<span class="meta">find</span>: <a class="support type" href="launchfind.doc.html">LaunchFind</a>, <span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a>): [<a class="support type" href="launch.doc.html">Launch</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchesPast</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="launchfind.doc.html">LaunchFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): [<a class="support type" href="launch.doc.html">Launch</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchesPastResult</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="launchfind.doc.html">LaunchFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): <a class="support type" href="launchespastresult.doc.html">LaunchesPastResult</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchesUpcoming</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="launchfind.doc.html">LaunchFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): [<a class="support type" href="launch.doc.html">Launch</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchpad</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="launchpad.doc.html">Launchpad</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">launchpads</span>(<span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): [<a class="support type" href="launchpad.doc.html">Launchpad</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">mission</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!</span></span></li><li><span class="tab">): <a class="support type" href="mission.doc.html">Mission</a> <span class="keyword operator ts">@deprecated</span>( reason: <span class="string">"Mission is not available on REST API after MongoDB deprecation" </span> )</span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">missions</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="missionsfind.doc.html">MissionsFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a></span></span></li><li><span class="tab">): [<a class="support type" href="mission.doc.html">Mission</a>] <span class="keyword operator ts">@deprecated</span>( reason: <span class="string">"Mission is not available on REST API after MongoDB deprecation" </span> )</span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">missionsResult</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="missionsfind.doc.html">MissionsFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a></span></span></li><li><span class="tab">): <a class="support type" href="missionresult.doc.html">MissionResult</a> <span class="keyword operator ts">@deprecated</span>( reason: <span class="string">"Mission is not available on REST API after MongoDB deprecation" </span> )</span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">payload</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="payload.doc.html">Payload</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">payloads</span>(<span class="meta">find</span>: <a class="support type" href="payloadsfind.doc.html">PayloadsFind</a>, <span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a>): [<a class="support type" href="payload.doc.html">Payload</a>] </span></li><li></li><li><span class="tab"><span class="meta">roadster</span>: <a class="support type" href="roadster.doc.html">Roadster</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">rocket</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="rocket.doc.html">Rocket</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">rockets</span>(<span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): [<a class="support type" href="rocket.doc.html">Rocket</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">rocketsResult</span>(<span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>): <a class="support type" href="rocketsresult.doc.html">RocketsResult</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">ship</span>(<span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="ship.doc.html">Ship</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">ships</span>(<span class="meta">find</span>: <a class="support type" href="shipsfind.doc.html">ShipsFind</a>, <span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>, <span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a>): [<a class="support type" href="ship.doc.html">Ship</a>] </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>find</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shipsResult</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">find</span>: <a class="support type" href="shipsfind.doc.html">ShipsFind</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order</span>: <a class="support type" href="string.doc.html">String</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="string.doc.html">String</a></span></span></li><li><span class="tab">): <a class="support type" href="shipsresult.doc.html">ShipsResult</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   fetch data from the table: "users"</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>distinct_on</strong>: distinct select on columns</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: limit the nuber of rows returned</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: skip the first n rows. Use only with order_by</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order_by</strong>: sort the rows by one or more columns</span></span></li><li><span class="tab"><span class="comment line">#   <strong>where</strong>: filter the rows returned</span></span></li><li><span class="tab"><span class="meta">users</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">distinct_on</span>: [<a class="support type" href="users_select_column.doc.html">users_select_column</a>!],</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order_by</span>: [<a class="support type" href="users_order_by.doc.html">users_order_by</a>!],</span></span></li><li><span class="tab"><span class="tab"><span class="meta">where</span>: <a class="support type" href="users_bool_exp.doc.html">users_bool_exp</a></span></span></li><li><span class="tab">): [<a class="support type" href="users.doc.html">users</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   fetch aggregated fields from the table: "users"</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>distinct_on</strong>: distinct select on columns</span></span></li><li><span class="tab"><span class="comment line">#   <strong>limit</strong>: limit the nuber of rows returned</span></span></li><li><span class="tab"><span class="comment line">#   <strong>offset</strong>: skip the first n rows. Use only with order_by</span></span></li><li><span class="tab"><span class="comment line">#   <strong>order_by</strong>: sort the rows by one or more columns</span></span></li><li><span class="tab"><span class="comment line">#   <strong>where</strong>: filter the rows returned</span></span></li><li><span class="tab"><span class="meta">users_aggregate</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">distinct_on</span>: [<a class="support type" href="users_select_column.doc.html">users_select_column</a>!],</span></span></li><li><span class="tab"><span class="tab"><span class="meta">limit</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">offset</span>: <a class="support type" href="int.doc.html">Int</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">order_by</span>: [<a class="support type" href="users_order_by.doc.html">users_order_by</a>!],</span></span></li><li><span class="tab"><span class="tab"><span class="meta">where</span>: <a class="support type" href="users_bool_exp.doc.html">users_bool_exp</a></span></span></li><li><span class="tab">): <a class="support type" href="users_aggregate.doc.html">users_aggregate</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   fetch data from the table: "users" using primary key columns</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>id</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">users_by_pk</span>(<span class="meta">id</span>: <a class="support type" href="uuid.doc.html">uuid</a>!): <a class="support type" href="users.doc.html">users</a> </span></li><li>}</li></ul></code>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="require-by" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#require-by">
+                <i class="material-icons">link</i>
+            </a>
+            Require by
+        </h2>
+        <div class="require-by anyone">This element is not required by anyone</div>
+    </div>
+</section>
+</main>
+    <script src="./scripts/focus-active.js"></script>
+    <script src="./scripts/filter-types.js"></script>
+    <script src="./scripts/toggle-navigation.js"></script>
+</body>

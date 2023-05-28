@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# check if branch is not dev
+branch=$(git branch | grep '*' | sed 's/* //')
+
+if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|Merge|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
+    echo "Aborting commit. Your commit message is invalid." >&2
+    exit 1
+fi
+if ! head -1 "$1" | grep -qE "^.{1,88}$"; then
+    echo "Aborting commit. Your commit message is too long." >&2
+    exit 1
+fi
+if [ "$branch" = "dev" ]; then
+  echo "You can't commit directly to 'dev' branch"
+  exit 1
+fi
+
+# Continue with the commit if everything passed
+exit 0
