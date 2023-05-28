@@ -177,7 +177,7 @@ function QueryEditor() {
         <Row gutter={[24, 24]} className="editor-layout">
           <Col lg={isDocsVisible ? 8 : 0} xs={24}>
             <Suspense fallback={<Loader />}>
-              {err ? (
+              {err && isDocsVisible ? (
                 <Title level={5}>
                   {t('graphiql.errorDocs')}
                   <Button
