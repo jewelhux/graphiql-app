@@ -1,5 +1,6 @@
-import { Layout, Row, Col, Button, Avatar, Space } from 'antd';
+import { Layout, Row, Col, Button, Space } from 'antd';
 import { ReactElement } from 'react';
+import Image from 'next/image';
 
 const { Footer: AntFooter } = Layout;
 
@@ -10,30 +11,33 @@ function Footer(): ReactElement {
         <Col>
           <Button type="link" href="https://github.com/Jik789" className="btn">
             <Space>
-              <Avatar
-                className="github-avatar"
-                size="large"
+              <Image
+                width={40}
+                height={40}
                 alt="JiK"
                 src="https://avatars.githubusercontent.com/u/38877564?v=4"
+                className="github-avatar"
               />
             </Space>
           </Button>
 
           <Button type="link" href="https://github.com/okitel" className="btn">
-            <Avatar
-              className="github-avatar"
-              size="large"
+            <Image
+              width={40}
+              height={40}
               alt="okitel"
               src="https://avatars.githubusercontent.com/u/79774026?v=4"
+              className="github-avatar"
             />
           </Button>
 
           <Button type="link" href="https://github.com/Syderi" className="btn">
-            <Avatar
-              className="github-avatar"
-              size="large"
+            <Image
+              width={40}
+              height={40}
               alt="Syderi"
               src="https://avatars.githubusercontent.com/u/107023048?v=4"
+              className="github-avatar"
             />
           </Button>
         </Col>

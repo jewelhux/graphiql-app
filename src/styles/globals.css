@@ -155,9 +155,12 @@ a {
   height: auto;
 
 }
+
 .github-avatar {
+  border-radius: 50%;
   transition: 0.3s ease-in-out;
 }
+
 .github-avatar:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 10px var(--primary);
