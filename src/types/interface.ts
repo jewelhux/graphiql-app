@@ -1,5 +1,14 @@
 interface IUserSlice {
-  auth: boolean | null;
+  isAuth: boolean | undefined;
+  userEmail: string | undefined | null;
+}
+
+interface IQuerySlice {
+  query: string;
+}
+
+interface IVariablesSlice {
+  variables: string;
 }
 
 interface IFormData {
@@ -7,4 +16,4 @@ interface IFormData {
   password: string;
 }
 
-export type { IUserSlice, IFormData };
+export type { IUserSlice, IFormData, IQuerySlice, IVariablesSlice };

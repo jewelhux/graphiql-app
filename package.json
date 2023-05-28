@@ -1,7 +1,8 @@
 {
   "name": "graphi_ql",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://graphiql-app-production.up.railway.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,15 +24,14 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "graphql-markdown": "^7.0.0",
+    "husky": "^8.0.3",
     "i18next": "^22.4.9",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.1.1",
-    "react-i18next": "^12.1.5",
-    "graphql-markdown": "^7.0.0",
-    "husky": "^8.0.3",
     "lint-staged": "^12.5.0",
     "prettier": "^2.6.2",
-    "react-hook-form": "^7.43.9"
+    "react-i18next": "^12.1.5"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -56,5 +56,9 @@
     "react-redux": "^8.0.5",
     "styled-components": "^5.3.10",
     "typescript": "5.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jik789/graphiql-app.git"
   }
 }

@@ -46,6 +46,9 @@ a {
   width: 100%;
   transition: 0.5s ease-in-out;
 }
+.header-row {
+  justify-content: space-between;
+}
 
 .scrolled {
   background: #ff9933 !important;
@@ -65,9 +68,21 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-.title:hover {
+.title:hover, .user-email:hover {
   transform: scale(1.03);
   text-shadow: 0px 3px 5px var(--primary);
+}
+
+.header-avatar {
+  vertical-align: middle;
+  background-color: var(--primary);
+}
+
+
+.user-email {
+  cursor: default;
+  color: var(--light) !important;
+  transition: 0.3s ease-in-out;
 }
 
 /* Form styles */
@@ -99,23 +114,28 @@ a {
   text-align: center;
   position: relative;
   animation-name: appearance;
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-fill-mode: forwards;
   transition: 0.3s ease-in-out;
   user-select: none;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #welcome:hover {
   text-shadow: 0px 3px 5px var(--primary);
 }
 
+.welcome-desc {
+  text-align: center;
+  max-width: 80%;
+}
+
 @keyframes appearance {
   0% {
-    left: -1000px;
+    top: -1000px;
   }
   100% {
-    left: 0px;
+    top: 0px;
   }
 }
 
@@ -126,14 +146,21 @@ a {
   background: var(--dark);
   padding: 10px;
 }
+.footer-row {
+  min-height: 55px;
+  justify-content: space-between;
+}
 
 .btn {
   height: auto;
 
 }
+
 .github-avatar {
+  border-radius: 50%;
   transition: 0.3s ease-in-out;
 }
+
 .github-avatar:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 10px var(--primary);
@@ -657,9 +684,16 @@ a {
 }
 
 /* Editor styles */
+.editor-layout {
+  width: calc(100% - 60px);
+}
+
+.editor-line {
+  margin-bottom: 10px;
+}
 
 .cm-editor {
-  height: 600px;
+  height: 540px;
 }
 
 .docs-hidden {
@@ -680,39 +714,93 @@ a {
   font-size: 15px;
 }
 
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.spin {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999; /* Значение z-index для отображения попапа поверх других элементов */
+  margin-top: 20%;
 }
 
-.content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  text-align: center;
+.editor-controls {
+  display: flex;
+  flex-direction: column;
 }
 
-.message {
-  font-size: 18px;
+/* Media */
+@media (max-width: 700px) {
+  .title {
+    margin-bottom: 0 !important;
+  }
+
+  .header-row, .footer-row {
+    justify-content: center;
+  }
+
+  .scrolled {
+    height: 135px;
+  }
+
+  .unscrolled {
+    height: 150px;
+  }
+
+
+  .backg {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+  }
+
+  .form {
+    min-width: 300px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 360px) {
+  .scrolled {
+    height: 200px;
+  }
+
+  .unscrolled {
+    height: 215px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .editor-controls {
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+  .editor-layout {
+    width: 100%;
+  }
+
+  .editor-line {
+    justify-content: center;
+  }
+}
+
+.dev-cards > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 13rem;
+}
+
+.dev-cards-avatar {
+  transition: 0.3s ease-in-out;
+  width: 70px;
+  height: 70px;
   margin-bottom: 10px;
 }
 
-.closeButton {
-  padding: 8px 16px;
-  background-color: #ddd;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.dev-cards-avatar:hover {
+  box-shadow: 0px 0px 10px var(--primary);
 }
 
-.closeButton:hover {
-  background-color: #ccc;
+.dev-description {
+  white-space: pre-line;
+  margin: 10px 0;
 }

@@ -1,44 +1,24 @@
 'use client';
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Typography, Button, Layout, Row, Col, Space } from 'antd';
-import { useAuth } from '@/hooks/useAuth';
-import { getAuth } from 'firebase/auth';
+import { Typography, Button, Layout, Row, Col, Space, Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import Language from './Language';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/store';
+import { logOut } from '@/firebase';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
 
 const Header: FC = () => {
   const { push } = useRouter();
-  const [localAuth, setLocalAuth] = useState(false);
-  const { isAuth } = useAuth();
-  const auth = getAuth();
+  const { isAuth } = useAppSelector((state) => state.auth);
   const { t } = useTranslation();
-
-  useEffect(
-    () =>
-      setLocalAuth(
-        window.localStorage.isAuth ? JSON.parse(window.localStorage.isAuth).auth : false
-      ),
-    [isAuth]
-  );
-  useEffect(
-    () =>
-      setLocalAuth(
-        window.localStorage.isAuth ? JSON.parse(window.localStorage.isAuth).auth : false
-      ),
-    []
-  );
-
+  const { pathname } = useRouter();
+  const isOnEditor = pathname === '/graphi';
+  const { userEmail } = useAppSelector((state) => state.auth);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const userLogOut = async () => {
-    await auth.signOut();
-    setLocalAuth(false);
-    push('/');
-  };
 
   useEffect(() => {
     const next = document.getElementById('__next');
@@ -59,8 +39,8 @@ const Header: FC = () => {
 
   return (
     <AntHeader className={`header ${isScrolled ? 'scrolled' : 'unscrolled'}`}>
-      <Row justify="space-between" align="middle">
-        <Col>
+      <Row className="header-row" align="middle">
+        <Col style={{ marginRight: '10px' }}>
           <Title
             level={1}
             className="title"
@@ -71,14 +51,36 @@ const Header: FC = () => {
             GrafiQL
           </Title>
         </Col>
-        <Col>
+        <Col style={{ marginRight: '10px' }}>
           <Language />
         </Col>
-        <Col>
-          {localAuth ? (
-            <Button type="default" onClick={() => userLogOut()}>
-              {t('auth.logout')}
-            </Button>
+        <Col style={{ marginRight: '10px' }}>
+          {isAuth ? (
+            <Space>
+              {isOnEditor ? (
+                <>
+                  <Avatar className="header-avatar" size="large">
+                    {userEmail?.slice(0, 1).toUpperCase() || <UserOutlined />}
+                  </Avatar>
+                  <Title className="user-email" level={5}>
+                    {userEmail}
+                  </Title>
+                </>
+              ) : (
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    push('/graphi');
+                  }}
+                >
+                  {t('auth.redirect')}
+                </Button>
+              )}
+
+              <Button type="default" onClick={async () => await logOut()}>
+                {t('auth.logout')}
+              </Button>
+            </Space>
           ) : (
             <Space>
               <Button

@@ -1,12 +1,13 @@
 import Head from 'next/head';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Footer from './Footer';
 import Header from './Header';
 import { Layout as AntLayout, Row, Col } from 'antd';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useAppDispatch } from '@/store/store';
-import { removeUser, setUser } from '@/store/features/userSlice';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { setUser } from '@/store/features/userSliceAuth';
+import Loader from './Loader';
 
 const { Content } = AntLayout;
 
@@ -15,22 +16,33 @@ interface ILayoutProps {
 }
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
+  const router = useRouter();
+  const { isAuth } = useAppSelector((state) => state.auth);
   const auth = getAuth();
   const dispatch = useAppDispatch();
+  const [authTouched, setAuthTouched] = useState(false);
   const { pathname } = useRouter();
+  const privateRoute = router.asPath === '/graphi';
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      if (typeof window !== 'undefined') {
-        localStorage.isAuth = JSON.stringify({ auth: true });
-        dispatch(setUser());
+  useEffect(() => {
+    const AUTH_PATH = ['/signin', '/signup'];
+    if (!authTouched) return;
+    if (isAuth) {
+      if (AUTH_PATH.includes(router.asPath)) {
+        router.replace('/graphi');
       }
     } else {
-      if (typeof window !== 'undefined') {
-        localStorage.isAuth = JSON.stringify({ auth: false });
-        dispatch(removeUser());
+      if (privateRoute) {
+        router.replace('/');
       }
     }
+  }, [authTouched, isAuth, privateRoute, router]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setAuthTouched(true);
+      dispatch(setUser({ isAuth: !!user, userEmail: user?.email }));
+    });
   });
 
   const fullWidthStyle = pathname === '/graphi' ? { width: '90%' } : {};
@@ -47,7 +59,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
         <AntLayout className="center top">
           <Content style={fullWidthStyle}>
             <Row justify="center" gutter={[16, 24]}>
-              <Col span={24}>{children}</Col>
+              <Col span={24}>{isAuth !== undefined ? children : <Loader />}</Col>
             </Row>
           </Content>
         </AntLayout>
