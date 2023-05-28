@@ -52,6 +52,8 @@ i18n.use(initReactI18next).init({
           errorDocs:
             "We're sorry, but according to the technical specification, the working documentation explorer should only be visible when the SDL request succeeds. For viewing the official documentation, you can follow the ",
           link: 'link',
+          errorReq: 'Request failed',
+          errorVar: 'Invalid value in the variables input',
         },
         loader: {
           loader: 'Loading...',
@@ -117,6 +119,8 @@ i18n.use(initReactI18next).init({
           errorDocs:
             'Извините, но согласно техническому заданию рабочая документация должна быть видима только при успешном выполнении запроса SDL. Для просмотра официальной документации вы можете перейти по ',
           link: 'ссылке',
+          errorReq: 'Запрос не выполнен',
+          errorVar: 'Невалидное значение переменных',
         },
         loader: {
           loader: 'Загрузка...',

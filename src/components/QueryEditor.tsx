@@ -4,7 +4,7 @@ import { graphql } from 'cm6-graphql';
 import { buildHTTPExecutor } from '@graphql-tools/executor-http';
 import { schemaFromExecutor } from '@graphql-tools/wrap';
 import { GraphQLSchema } from 'graphql/type';
-import { Col, Row, Button, Space, Tooltip, Tabs, Typography } from 'antd';
+import { Col, Row, Button, Space, Tooltip, Tabs, Typography, notification } from 'antd';
 import { BookTwoTone, CaretRightFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import Loader from './Loader';
@@ -17,7 +17,7 @@ const headerGraphqlRequest = `{'Content-type': 'application/json'}`;
 const Docs = lazy(() => import('./Docs'));
 
 function QueryEditor() {
-  const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | null>(null);
+  const [myGraphQLSchema, setMyGraphQLSchema] = useState<GraphQLSchema | undefined>(undefined);
   const [response, setResponse] = useState<string>('');
   const [err, setErr] = useState<boolean>(false);
   const [value, setValue] = useState('');
@@ -25,7 +25,15 @@ function QueryEditor() {
   const [isDocsVisible, setIsDocsVisible] = useState<boolean>(false);
   const { t } = useTranslation();
   const { Title } = Typography;
+  const [api, contextHolder] = notification.useNotification();
   const dispatch = useAppDispatch();
+
+  const openErrorNotification = (description: string) => {
+    api['error']({
+      message: t('graphiql.errorReq'),
+      description: description,
+    });
+  };
 
   const queryState = useAppSelector((state: RootState) => state.query.query);
   const variablesState = useAppSelector((state: RootState) => state.variables.variables);
@@ -39,9 +47,9 @@ function QueryEditor() {
   }, [variablesState]);
 
   useEffect(() => {
-    try {
-      setErr(false);
-      const fetchSchema = async () => {
+    setErr(false);
+    const fetchSchema = async () => {
+      try {
         const remoteExecutor = buildHTTPExecutor({ endpoint: URL_GRAPH_GL });
 
         const postsSubschema = {
@@ -49,11 +57,12 @@ function QueryEditor() {
           executor: remoteExecutor,
         };
         setMyGraphQLSchema(postsSubschema.schema);
-      };
-      fetchSchema();
-    } catch (error) {
-      setErr(true);
-    }
+      } catch (error) {
+        setErr(true);
+        setMyGraphQLSchema(undefined);
+      }
+    };
+    fetchSchema();
   }, []);
 
   const onChangeValue = React.useCallback(
@@ -72,23 +81,36 @@ function QueryEditor() {
     [dispatch]
   );
 
-  const makeRequest = async (query: string): Promise<string> => {
-    const requestBody = {
-      query,
-      variables: JSON.parse(variables),
-    };
+  const makeRequest = async (query: string): Promise<string | void> => {
+    let requestBody;
+    try {
+      requestBody = {
+        query,
+        variables: JSON.parse(variables),
+      };
+    } catch (err) {
+      if (err instanceof Error) {
+        openErrorNotification(`${t('graphiql.errorVar')}: ${err.message}`);
+      }
+    }
 
-    const res = await fetch(URL_GRAPH_GL, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    });
+    try {
+      const res = await fetch(URL_GRAPH_GL, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    return data;
+      return data;
+    } catch (err) {
+      if (err instanceof Error) {
+        openErrorNotification(`${err.message}: ${URL_GRAPH_GL}`);
+      }
+    }
   };
 
   const handleDocsClick = () => {
@@ -131,76 +153,64 @@ function QueryEditor() {
 
   return (
     <>
-      {myGraphQLSchema ? (
-        <>
-          <Row gutter={24} className="editor-line">
-            <Col>
-              <Space className="editor-controls">
-                <Row>
-                  <Tooltip title={t('graphiql.query') || 'Execute query'}>
-                    <Button
-                      type="primary"
-                      icon={<CaretRightFilled />}
-                      onClick={handleSendRequest}
-                    ></Button>
-                  </Tooltip>
-                </Row>
-                <Row>
-                  <Tooltip title={t('graphiql.docs') || 'Docs'} placement="bottom">
-                    <Button
-                      type="default"
-                      icon={<BookTwoTone />}
-                      onClick={handleDocsClick}
-                    ></Button>
-                  </Tooltip>
-                </Row>
-              </Space>
-            </Col>
-
-            <Row gutter={[24, 24]} className="editor-layout">
-              <Col lg={isDocsVisible ? 8 : 0} xs={24}>
-                <Suspense fallback={<Loader />}>
-                  {err ? (
-                    <Title level={5}>
-                      {t('graphiql.errorDocs')}
-                      <Button
-                        type="link"
-                        href={URL_GRAPH_GL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ padding: 0 }}
-                      >
-                        {t('graphiql.link')}
-                      </Button>
-                    </Title>
-                  ) : (
-                    <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
-                  )}
-                </Suspense>
-              </Col>
-              <Col lg={isDocsVisible ? 8 : 12} xs={24}>
-                <CodeMirror
-                  value={value}
-                  height="200px"
-                  width="100%"
-                  extensions={[graphql(myGraphQLSchema)]}
-                  onChange={onChangeValue}
-                />
-                <Tabs centered items={tabsItems} />
-              </Col>
-
-              <Col lg={isDocsVisible ? 8 : 12} xs={24}>
-                <CodeMirror
-                  value={response ? JSON.stringify(response, null, 2) : ''}
-                  readOnly={true}
-                />
-              </Col>
+      {contextHolder}
+      <Row gutter={24} className="editor-line">
+        <Col>
+          <Space className="editor-controls">
+            <Row>
+              <Tooltip title={t('graphiql.query') || 'Execute query'}>
+                <Button
+                  type="primary"
+                  icon={<CaretRightFilled />}
+                  onClick={handleSendRequest}
+                ></Button>
+              </Tooltip>
             </Row>
-          </Row>
-        </>
-      ) : (
-        <Loader />
-      )}
+            <Row>
+              <Tooltip title={t('graphiql.docs') || 'Docs'} placement="bottom">
+                <Button type="default" icon={<BookTwoTone />} onClick={handleDocsClick}></Button>
+              </Tooltip>
+            </Row>
+          </Space>
+        </Col>
+
+        <Row gutter={[24, 24]} className="editor-layout">
+          <Col lg={isDocsVisible ? 8 : 0} xs={24}>
+            <Suspense fallback={<Loader />}>
+              {err ? (
+                <Title level={5}>
+                  {t('graphiql.errorDocs')}
+                  <Button
+                    type="link"
+                    href={URL_GRAPH_GL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ padding: 0 }}
+                  >
+                    {t('graphiql.link')}
+                  </Button>
+                </Title>
+              ) : (
+                <Docs class={isDocsVisible ? 'docs-visible' : 'docs-hidden'} />
+              )}
+            </Suspense>
+          </Col>
+          <Col lg={isDocsVisible ? 8 : 12} xs={24}>
+            <CodeMirror
+              value={value}
+              height="200px"
+              width="100%"
+              extensions={[graphql(myGraphQLSchema)]}
+              onChange={onChangeValue}
+            />
+            <Tabs centered items={tabsItems} />
+          </Col>
+
+          <Col lg={isDocsVisible ? 8 : 12} xs={24}>
+            <CodeMirror value={response ? JSON.stringify(response, null, 2) : ''} readOnly={true} />
+          </Col>
+        </Row>
+      </Row>
     </>
   );
 }
